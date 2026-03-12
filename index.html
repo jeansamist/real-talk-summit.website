@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="/_vercel/insights/script.js"></script>
     <title>Real Talk Summit — April 18th</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap"
@@ -1501,6 +1502,26 @@
         #vendor-gateway > div:first-child {
           min-height: 280px;
         }
+        .speaker-card {
+          aspect-ratio: 1 / 1.15;
+        }
+        .sc-photo-ring {
+          width: 58%;
+          padding-bottom: 58%;
+        }
+        .speaker-card.featured .sc-photo-ring {
+          width: 62%;
+          padding-bottom: 62%;
+        }
+        .sc-info {
+          padding: 0.9rem 1rem 1rem;
+        }
+        .sc-name {
+          font-size: clamp(0.95rem, 2.6vw, 1.2rem);
+        }
+        .sc-role {
+          font-size: 0.68rem;
+        }
       }
       @media (max-width: 600px) {
         section {
@@ -1525,7 +1546,37 @@
           gap: 1.5rem;
         }
         .speakers-grid {
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr;
+        }
+        .speaker-card {
+          aspect-ratio: 1 / 1.28;
+        }
+        .sc-photo-ring {
+          width: 62%;
+          padding-bottom: 62%;
+          top: 3%;
+          right: 3%;
+          border-width: 3px;
+        }
+        .speaker-card.featured .sc-photo-ring {
+          width: 66%;
+          padding-bottom: 66%;
+        }
+        .sc-label {
+          font-size: 0.6rem;
+        }
+        .sc-swoosh {
+          height: 52%;
+        }
+        .sc-info {
+          padding: 0.9rem 0.95rem 1rem;
+        }
+        .sc-name {
+          font-size: clamp(0.95rem, 4.2vw, 1.15rem);
+        }
+        .sc-role {
+          font-size: 0.6rem;
+          letter-spacing: 0.05em;
         }
       }
 
@@ -2187,44 +2238,41 @@
       </div>
 
       <div class="speakers-grid">
-        <!-- ── Speaker 1: Apostle Kendria Andrews ── -->
+        <!-- ── Speaker 1: Whitney Labelle Davis Moss (Just Whiti) ── -->
         <div class="speaker-card featured reveal reveal-delay-1">
           <div class="sc-circle-top"></div>
           <div class="sc-photo-ring">
             <img
-              src="/mnt/user-data/uploads/WhatsApp_Image_2026-02-06_at_2_55_35_PM.jpeg"
-              alt="Apostle Kendria Andrews"
+              src="./assets/images/speaker-1.jpeg"
+              alt="Whitney Labelle Davis Moss (Just Whiti)"
             />
           </div>
           <span class="sc-label">Speaker:</span>
           <div class="sc-swoosh"></div>
           <div class="sc-info">
-            <p class="sc-name">Apostle Kendria Andrews</p>
-            <p class="sc-role">Apostolic Leader &amp; Conference Speaker</p>
+            <p class="sc-name">Whitney Labelle Davis Moss (Just Whiti)</p>
+            <p class="sc-role">Summit Speaker</p>
           </div>
         </div>
 
-        <!-- ── Placeholder 2 ── -->
+        <!-- ── Speaker 2: Elder Gregory & Gwendolyn Jennings ── -->
         <div class="speaker-card reveal reveal-delay-2">
           <div class="sc-circle-top"></div>
           <div class="sc-photo-ring">
-            <div class="sc-silhouette">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"
-                />
-              </svg>
-            </div>
+            <img
+              src="./assets/images/speaker-2.jpeg"
+              alt="Elder Gregory & Gwendolyn Jennings"
+            />
           </div>
           <span class="sc-label">Speaker:</span>
           <div class="sc-swoosh"></div>
           <div class="sc-info">
-            <p class="sc-name">Speaker Name</p>
-            <p class="sc-role">Title &amp; Role</p>
+            <p class="sc-name">Elder Gregory &amp; Gwendolyn Jennings</p>
+            <p class="sc-role">Summit Speakers</p>
           </div>
         </div>
 
-        <!-- ── Placeholder 3 (navy accent) ── -->
+        <!-- ── Speaker 3: Dr. Ivy Butler (navy accent) ── -->
         <div
           class="speaker-card reveal reveal-delay-3"
           style="background: var(--navy)"
@@ -2234,39 +2282,30 @@
             style="background: rgba(255, 255, 255, 0.12)"
           ></div>
           <div class="sc-photo-ring" style="background: var(--navy-light)">
-            <div class="sc-silhouette">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"
-                />
-              </svg>
-            </div>
+            <img src="./assets/images/speaker-3.jpeg" alt="Dr. Ivy Butler" />
           </div>
           <span class="sc-label">Speaker:</span>
           <div class="sc-swoosh"></div>
           <div class="sc-info">
-            <p class="sc-name">Speaker Name</p>
-            <p class="sc-role" style="color: var(--navy)">Title &amp; Role</p>
+            <p class="sc-name">Dr. Ivy Butler</p>
+            <p class="sc-role" style="color: var(--navy)">Summit Speaker</p>
           </div>
         </div>
 
-        <!-- ── Placeholder 4 ── -->
+        <!-- ── Speaker 4: Elder Noah Nicholson & Mallory Nicholson ── -->
         <div class="speaker-card reveal reveal-delay-4">
           <div class="sc-circle-top"></div>
           <div class="sc-photo-ring">
-            <div class="sc-silhouette">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"
-                />
-              </svg>
-            </div>
+            <img
+              src="./assets/images/speaker-4.jpeg"
+              alt="Elder Noah Nicholson & Mallory Nicholson"
+            />
           </div>
           <span class="sc-label">Speaker:</span>
           <div class="sc-swoosh"></div>
           <div class="sc-info">
-            <p class="sc-name">Speaker Name</p>
-            <p class="sc-role">Title &amp; Role</p>
+            <p class="sc-name">Elder Noah Nicholson &amp; Mallory Nicholson</p>
+            <p class="sc-role">Summit Speakers</p>
           </div>
         </div>
       </div>

@@ -697,6 +697,13 @@
         position: absolute;
         inset: 0;
       }
+      .merch-photo {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
       .merch-emoji {
         position: relative;
         z-index: 1;
@@ -2498,62 +2505,110 @@
         <div class="marquee-inner">
           <!-- 12 cards (6 unique, duplicated for seamless loop) -->
           <div class="moment-card mc1">
+            <img
+              src="./assets/images/moments/2024-summit.jpeg"
+              alt="2024 Summit"
+            />
             <div class="moment-card-overlay">
               <span class="moment-card-label">2024 Summit</span>
             </div>
           </div>
           <div class="moment-card mc2">
+            <img
+              src="./assets/images/moments/worship.jpeg"
+              alt="Worship moment"
+            />
             <div class="moment-card-overlay">
               <span class="moment-card-label">Worship Moment</span>
             </div>
           </div>
           <div class="moment-card mc3">
+            <img
+              src="./assets/images/moments/community.jpeg"
+              alt="Community gathering"
+            />
             <div class="moment-card-overlay">
               <span class="moment-card-label">Community</span>
             </div>
           </div>
           <div class="moment-card mc4">
+            <img
+              src="./assets/images/moments/breakout-session.jpeg"
+              alt="Breakout session"
+            />
             <div class="moment-card-overlay">
               <span class="moment-card-label">Breakout Session</span>
             </div>
           </div>
           <div class="moment-card mc5">
+            <img
+              src="./assets/images/moments/keynote.jpeg"
+              alt="Keynote moment"
+            />
             <div class="moment-card-overlay">
               <span class="moment-card-label">Keynote</span>
             </div>
           </div>
           <div class="moment-card mc6">
+            <img
+              src="./assets/images/moments/altar-call.jpeg"
+              alt="Altar call"
+            />
             <div class="moment-card-overlay">
               <span class="moment-card-label">Altar Call</span>
             </div>
           </div>
           <!-- duplicates -->
           <div class="moment-card mc1">
+            <img
+              src="./assets/images/moments/2024-summit.jpeg"
+              alt="2024 Summit"
+            />
             <div class="moment-card-overlay">
               <span class="moment-card-label">2024 Summit</span>
             </div>
           </div>
           <div class="moment-card mc2">
+            <img
+              src="./assets/images/moments/worship.jpeg"
+              alt="Worship moment"
+            />
             <div class="moment-card-overlay">
               <span class="moment-card-label">Worship Moment</span>
             </div>
           </div>
           <div class="moment-card mc3">
+            <img
+              src="./assets/images/moments/community.jpeg"
+              alt="Community gathering"
+            />
             <div class="moment-card-overlay">
               <span class="moment-card-label">Community</span>
             </div>
           </div>
           <div class="moment-card mc4">
+            <img
+              src="./assets/images/moments/breakout-session.jpeg"
+              alt="Breakout session"
+            />
             <div class="moment-card-overlay">
               <span class="moment-card-label">Breakout Session</span>
             </div>
           </div>
           <div class="moment-card mc5">
+            <img
+              src="./assets/images/moments/keynote.jpeg"
+              alt="Keynote moment"
+            />
             <div class="moment-card-overlay">
               <span class="moment-card-label">Keynote</span>
             </div>
           </div>
           <div class="moment-card mc6">
+            <img
+              src="./assets/images/moments/altar-call.jpeg"
+              alt="Altar call"
+            />
             <div class="moment-card-overlay">
               <span class="moment-card-label">Altar Call</span>
             </div>
@@ -2588,7 +2643,11 @@
               class="merch-img-bg"
               style="background: linear-gradient(135deg, #fff0f2, #ffe0e5)"
             ></div>
-            <span class="merch-emoji">👕</span>
+            <img
+              class="merch-photo"
+              src="./assets/images/wear-1.jpeg"
+              alt="Real Talk Tee"
+            />
           </div>
           <div class="merch-body">
             <p class="merch-name">Real Talk Tee</p>
@@ -2603,7 +2662,11 @@
               class="merch-img-bg"
               style="background: linear-gradient(135deg, #eef0ff, #dde1ff)"
             ></div>
-            <span class="merch-emoji">🧢</span>
+            <img
+              class="merch-photo"
+              src="./assets/images/wear-2.jpeg"
+              alt="Summit Cap"
+            />
           </div>
           <div class="merch-body">
             <p class="merch-name">Summit Cap</p>
@@ -2618,7 +2681,11 @@
               class="merch-img-bg"
               style="background: linear-gradient(135deg, #fff5e0, #ffe8b5)"
             ></div>
-            <span class="merch-emoji">🛍️</span>
+            <img
+              class="merch-photo"
+              src="./assets/images/wear-3.jpeg"
+              alt="Tote Bag"
+            />
           </div>
           <div class="merch-body">
             <p class="merch-name">Tote Bag</p>
@@ -2643,19 +2710,18 @@
     >
       <!-- Left: image panel with navy overlay -->
       <div style="position: relative; overflow: hidden; min-height: 520px">
-        <!-- Gradient stand-in (replace with a real img src if you have one) -->
-        <div
+        <img
+          src="./assets/images/vendor-stand.jpeg"
+          alt="Exhibition stands at a trade show"
           style="
             position: absolute;
             inset: 0;
-            background: linear-gradient(
-              135deg,
-              #0d1535 0%,
-              #1b2a5e 40%,
-              #2a3f87 100%
-            );
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
           "
-        ></div>
+        />
         <!-- Marketplace-vibe pattern overlay -->
         <div
           style="

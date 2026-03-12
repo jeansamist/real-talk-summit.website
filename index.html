@@ -861,21 +861,17 @@
         border-radius: 4px;
         overflow: hidden;
         aspect-ratio: 3/4;
-        background: var(--red);
+        background: var(--white);
       }
       .founder-img-frame img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        mix-blend-mode: luminosity;
-        opacity: 0.85;
         transition:
-          opacity 0.3s,
-          mix-blend-mode 0.3s;
+          opacity 0.3s;
       }
       .founder-img-frame:hover img {
         opacity: 1;
-        mix-blend-mode: normal;
       }
       .founder-deco {
         position: absolute;

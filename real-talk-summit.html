@@ -1,0 +1,3789 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="/_vercel/insights/script.js"></script>
+    <title>Real Talk Summit — April 18th</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --red: #c8102e;
+        --red-dark: #9b0c22;
+        --red-light: #e8304a;
+        --navy: #1b2a5e;
+        --navy-light: #2a3f87;
+        --white: #ffffff;
+        --off-white: #faf9f7;
+        --gray-100: #f4f3f1;
+        --gray-300: #d1cfc9;
+        --gray-600: #6b6860;
+        --gray-900: #1a1917;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--white);
+        color: var(--gray-900);
+        overflow-x: hidden;
+      }
+
+      /* ─── NAV ─────────────────────────────────── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 0 5vw;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        background: rgb(255, 255, 255);
+        border-bottom: 1px solid rgba(200, 16, 46, 0.12);
+        transition: background 0.3s;
+      }
+      .nav-logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: "Playfair Display", serif;
+        font-size: 1.25rem;
+        font-weight: 900;
+        color: var(--red);
+        letter-spacing: -0.02em;
+        text-decoration: none;
+      }
+      .nav-logo span {
+        color: var(--navy);
+      }
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+        align-items: center;
+      }
+      .nav-links a {
+        font-size: 0.875rem;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--gray-900);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--red);
+      }
+      .nav-actions {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+      }
+      .btn-outline {
+        padding: 0.5rem 1.25rem;
+        border: 2px solid var(--red);
+        border-radius: 2px;
+        background: transparent;
+        color: var(--red);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+      }
+      .btn-outline:hover {
+        background: var(--red);
+        color: var(--white);
+      }
+      .btn-solid {
+        padding: 0.5rem 1.25rem;
+        background: var(--red);
+        border: 2px solid var(--red);
+        border-radius: 2px;
+        color: var(--white);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+      }
+      .btn-solid:hover {
+        background: var(--red-dark);
+        border-color: var(--red-dark);
+      }
+      .nav-hamburger {
+        display: none;
+        cursor: pointer;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .nav-hamburger span {
+        width: 24px;
+        height: 2px;
+        background: var(--gray-900);
+        display: block;
+        transition: 0.3s;
+      }
+
+      /* ─── HERO ────────────────────────────────── */
+      #hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: var(--gray-900);
+      }
+      .hero-video-wrap {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .hero-video-wrap video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.35;
+      }
+      .hero-video-fallback {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          #1a0508 0%,
+          #2d0a11 40%,
+          #0d1535 100%
+        );
+      }
+      /* Organic shapes */
+      .hero-shape-1 {
+        position: absolute;
+        top: -120px;
+        right: -80px;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(200, 16, 46, 0.35) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .hero-shape-2 {
+        position: absolute;
+        bottom: -150px;
+        left: -100px;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(27, 42, 94, 0.5) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 860px;
+        padding: 0 5vw;
+        text-align: center;
+        animation: fadeUp 1s ease both;
+      }
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: rgba(200, 16, 46, 0.15);
+        border: 1px solid rgba(200, 16, 46, 0.4);
+        padding: 0.4rem 1.25rem;
+        border-radius: 100px;
+        margin-bottom: 2rem;
+        animation: fadeUp 1s 0.1s ease both;
+      }
+      .hero-eyebrow-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--red);
+        animation: pulse 2s infinite;
+      }
+      .hero-eyebrow span {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .hero-h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-weight: 900;
+        line-height: 1.05;
+        color: var(--white);
+        letter-spacing: -0.02em;
+        margin-bottom: 1.5rem;
+        animation: fadeUp 1s 0.2s ease both;
+      }
+      .hero-h1 em {
+        font-style: italic;
+        color: var(--red-light);
+      }
+      .hero-sub {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        font-weight: 300;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.72);
+        max-width: 620px;
+        margin: 0 auto 1rem;
+        animation: fadeUp 1s 0.3s ease both;
+      }
+      .hero-meta {
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 2.5rem;
+        animation: fadeUp 1s 0.35s ease both;
+      }
+      .hero-meta strong {
+        color: var(--red-light);
+      }
+      .hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: var(--red);
+        color: var(--white);
+        padding: 1rem 2.5rem;
+        border-radius: 3px;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        text-decoration: none;
+        animation:
+          fadeUp 1s 0.4s ease both,
+          ctaPulse 3s 2s ease-in-out infinite;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .hero-cta:hover {
+        background: var(--red-dark);
+        transform: translateY(-2px);
+      }
+      .hero-cta svg {
+        width: 18px;
+        height: 18px;
+      }
+      .hero-scroll {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        animation: fadeUp 1s 0.8s ease both;
+      }
+      .hero-scroll-line {
+        width: 1px;
+        height: 40px;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        animation: scrollLine 2s ease-in-out infinite;
+      }
+
+      /* ─── AUDIENCE BAR ────────────────────────── */
+      #audience {
+        background: var(--gray-900);
+        border-top: 1px solid rgba(200, 16, 46, 0.3);
+        border-bottom: 1px solid rgba(200, 16, 46, 0.3);
+        padding: 2rem 5vw;
+      }
+      .audience-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0;
+      }
+      .audience-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        margin-right: 2rem;
+      }
+      .audience-item {
+        display: flex;
+        align-items: center;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+        font-weight: 700;
+        color: var(--white);
+        letter-spacing: 0.08em;
+      }
+      .audience-sep {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--red);
+        margin: 0 1.25rem;
+      }
+
+      /* ─── SECTION WRAPPER ─────────────────────── */
+      section {
+        padding: 6rem 5vw;
+      }
+      .section-eyebrow {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 0.75rem;
+      }
+      .section-h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        font-weight: 900;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: var(--gray-900);
+        margin-bottom: 1.25rem;
+      }
+      .section-h2 em {
+        font-style: italic;
+        color: var(--red);
+      }
+      .section-body {
+        font-size: 1.05rem;
+        line-height: 1.75;
+        color: var(--gray-600);
+        max-width: 560px;
+      }
+
+      /* ─── SPEAKERS — Flyer-faithful style ────── */
+      #speakers {
+        background: var(--off-white);
+      }
+      .speakers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 2rem;
+        margin-top: 3.5rem;
+      }
+
+      /* Card shell */
+      .speaker-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 6px;
+        background: var(--red); /* solid red base like the flyer */
+        aspect-ratio: 1 / 1.08;
+        cursor: pointer;
+        transition:
+          transform 0.35s cubic-bezier(0.22, 0.68, 0, 1.2),
+          box-shadow 0.35s ease;
+        box-shadow: 0 4px 24px rgba(200, 16, 46, 0.25);
+      }
+      .speaker-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 50px rgba(200, 16, 46, 0.35);
+      }
+
+      /* ── Large white semi-circle top-right (matches flyer) ── */
+      .sc-circle-top {
+        position: absolute;
+        top: -18%;
+        right: -18%;
+        width: 72%;
+        padding-bottom: 72%; /* keep it square → circle */
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.18);
+        pointer-events: none;
+        z-index: 1;
+      }
+      /* Inner tighter white circle (flyer has two concentric arcs) */
+      .sc-circle-top::after {
+        content: "";
+        position: absolute;
+        inset: 12%;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      /* ── Photo circle — sits inside the top-right arc ── */
+      .sc-photo-ring {
+        position: absolute;
+        top: 4%;
+        right: 4%;
+        width: 56%;
+        padding-bottom: 56%;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid rgba(255, 255, 255, 0.9);
+        z-index: 2;
+        background: var(--red-dark);
+      }
+      .sc-photo-ring img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        transition: transform 0.5s ease;
+      }
+      .speaker-card:hover .sc-photo-ring img {
+        transform: scale(1.06);
+      }
+
+      /* Placeholder silhouette when no photo */
+      .sc-photo-ring .sc-silhouette {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          160deg,
+          rgba(255, 255, 255, 0.08) 0%,
+          transparent 100%
+        );
+      }
+      .sc-silhouette svg {
+        width: 50%;
+        height: 50%;
+        fill: rgba(255, 255, 255, 0.35);
+      }
+
+      /* ── "SPEAKER:" eyebrow label ── */
+      .sc-label {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        z-index: 3;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      /* ── White diagonal swoosh at bottom (key flyer element) ── */
+      .sc-swoosh {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 48%;
+        z-index: 2;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .sc-swoosh::before {
+        content: "";
+        position: absolute;
+        /* A skewed white rectangle creates the diagonal swoosh */
+        bottom: -20%;
+        left: -10%;
+        right: -10%;
+        height: 100%;
+        background: var(--white);
+        transform: skewY(-8deg);
+        transform-origin: bottom left;
+        border-radius: 2px 2px 0 0;
+      }
+      /* Thin red accent stripe above the white swoosh */
+      .sc-swoosh::after {
+        content: "";
+        position: absolute;
+        bottom: 42%;
+        left: -10%;
+        right: -10%;
+        height: 6px;
+        background: var(--red-dark);
+        transform: skewY(-8deg);
+        transform-origin: bottom left;
+      }
+
+      /* ── Name & role text on the white swoosh ── */
+      .sc-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 3;
+        padding: 1rem 1.1rem 1.1rem;
+      }
+      .sc-name {
+        font-family: "DM Sans", sans-serif;
+        font-size: clamp(1rem, 2.2vw, 1.3rem);
+        font-weight: 900;
+        line-height: 1.1;
+        color: var(--gray-900);
+        letter-spacing: -0.01em;
+        margin-bottom: 0.2rem;
+      }
+      .sc-role {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--red);
+      }
+
+      /* Featured card gets a slightly taller photo ring */
+      .speaker-card.featured .sc-photo-ring {
+        width: 60%;
+        padding-bottom: 60%;
+        top: 3%;
+        right: 3%;
+      }
+
+      /* ─── MOMENTS ─────────────────────────────── */
+      #moments {
+        background: var(--gray-900);
+        overflow: hidden;
+        padding-bottom: 0;
+      }
+      #moments .section-h2 {
+        color: var(--white);
+      }
+      #moments .section-eyebrow {
+        color: var(--red-light);
+      }
+      .marquee-track {
+        margin-top: 3rem;
+        overflow: hidden;
+      }
+      .marquee-inner {
+        display: flex;
+        gap: 1.5rem;
+        animation: marquee 30s linear infinite;
+        width: max-content;
+      }
+      .marquee-inner:hover {
+        animation-play-state: paused;
+      }
+      .moment-card {
+        flex: 0 0 280px;
+        height: 200px;
+        border-radius: 4px;
+        overflow: hidden;
+        position: relative;
+        background: linear-gradient(135deg, var(--red-dark), #600413);
+      }
+      .moment-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.7;
+      }
+      .moment-card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.6) 0%,
+          transparent 50%
+        );
+        display: flex;
+        align-items: flex-end;
+        padding: 1rem;
+      }
+      .moment-card-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      /* Dummy gradient moment cards */
+      .mc1 {
+        background: linear-gradient(135deg, #8b0a1e, #c8102e);
+      }
+      .mc2 {
+        background: linear-gradient(135deg, #1b2a5e, #2a3f87);
+      }
+      .mc3 {
+        background: linear-gradient(135deg, #3d1209, #8b0a1e);
+      }
+      .mc4 {
+        background: linear-gradient(135deg, #0d1535, #1b2a5e);
+      }
+      .mc5 {
+        background: linear-gradient(135deg, #c8102e, #e8304a);
+      }
+      .mc6 {
+        background: linear-gradient(135deg, #1b2a5e, #0d1535);
+      }
+
+      /* ─── MERCH ───────────────────────────────── */
+      #merch {
+        background: var(--white);
+      }
+      .merch-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 3.5rem;
+      }
+      .merch-card {
+        border-radius: 4px;
+        overflow: hidden;
+        border: 1px solid var(--gray-300);
+        transition:
+          box-shadow 0.3s,
+          transform 0.3s;
+      }
+      .merch-card:hover {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        transform: translateY(-4px);
+      }
+      .merch-img {
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .merch-img-bg {
+        position: absolute;
+        inset: 0;
+      }
+      .merch-emoji {
+        position: relative;
+        z-index: 1;
+      }
+      .merch-body {
+        padding: 1.25rem;
+      }
+      .merch-name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--gray-900);
+        margin-bottom: 0.3rem;
+      }
+      .merch-price {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--red);
+        margin-bottom: 1rem;
+      }
+      .merch-btn {
+        display: block;
+        width: 100%;
+        padding: 0.65rem;
+        background: var(--gray-100);
+        border: none;
+        border-radius: 2px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--gray-900);
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .merch-btn:hover {
+        background: var(--red);
+        color: var(--white);
+      }
+
+      /* ─── VENDOR VILLAGE ──────────────────────── */
+      #vendor {
+        position: relative;
+        overflow: hidden;
+        background: var(--red);
+        padding: 8rem 5vw;
+      }
+      .vendor-bg-shape {
+        position: absolute;
+        top: -200px;
+        right: -200px;
+        width: 700px;
+        height: 700px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.12);
+        pointer-events: none;
+      }
+      .vendor-bg-shape-2 {
+        position: absolute;
+        bottom: -300px;
+        left: -200px;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.06);
+        pointer-events: none;
+      }
+      .vendor-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 700px;
+      }
+      .vendor-eyebrow {
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 1rem;
+      }
+      .vendor-h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        line-height: 1.05;
+        color: var(--white);
+        letter-spacing: -0.02em;
+        margin-bottom: 1.5rem;
+      }
+      .vendor-body {
+        font-size: 1.15rem;
+        line-height: 1.75;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 2.5rem;
+        max-width: 520px;
+      }
+      .btn-white {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: var(--white);
+        color: var(--red);
+        padding: 0.9rem 2.5rem;
+        border-radius: 3px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .btn-white:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      }
+      .vendor-stats {
+        display: flex;
+        gap: 3rem;
+        margin-top: 3.5rem;
+        padding-top: 3rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .vendor-stat-num {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: var(--white);
+        line-height: 1;
+      }
+      .vendor-stat-label {
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 0.3rem;
+      }
+
+      /* ─── FOUNDER ─────────────────────────────── */
+      #founder {
+        background: var(--off-white);
+      }
+      .founder-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+        align-items: center;
+      }
+      .founder-img-wrap {
+        position: relative;
+      }
+      .founder-img-frame {
+        position: relative;
+        border-radius: 4px;
+        overflow: hidden;
+        aspect-ratio: 3/4;
+        background: var(--red);
+      }
+      .founder-img-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        mix-blend-mode: luminosity;
+        opacity: 0.85;
+        transition:
+          opacity 0.3s,
+          mix-blend-mode 0.3s;
+      }
+      .founder-img-frame:hover img {
+        opacity: 1;
+        mix-blend-mode: normal;
+      }
+      .founder-deco {
+        position: absolute;
+        bottom: -24px;
+        right: -24px;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 3px solid var(--red);
+        opacity: 0.25;
+        pointer-events: none;
+      }
+      .founder-deco-2 {
+        position: absolute;
+        top: -16px;
+        left: -16px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: var(--navy);
+        opacity: 0.12;
+        pointer-events: none;
+      }
+      .founder-quote {
+        position: absolute;
+        bottom: 2rem;
+        left: -2rem;
+        background: var(--navy);
+        color: var(--white);
+        padding: 1.25rem 1.5rem;
+        border-radius: 3px;
+        max-width: 260px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        z-index: 2;
+      }
+      .founder-quote-mark {
+        font-family: "Playfair Display", serif;
+        font-size: 3rem;
+        color: var(--red-light);
+        line-height: 0.5;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+      .founder-quote p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .founder-content {
+      }
+      .founder-h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.75rem, 3vw, 2.75rem);
+        font-weight: 900;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: var(--gray-900);
+        margin-bottom: 1.5rem;
+      }
+      .founder-h2 em {
+        font-style: italic;
+        color: var(--red);
+      }
+      .founder-body {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: var(--gray-600);
+        margin-bottom: 1.25rem;
+      }
+      .founder-sig {
+        font-family: "Playfair Display", serif;
+        font-size: 1.75rem;
+        font-style: italic;
+        color: var(--red);
+        margin-top: 2rem;
+        letter-spacing: -0.01em;
+      }
+
+      /* ─── FOOTER ──────────────────────────────── */
+      footer {
+        background: var(--gray-900);
+        padding: 5rem 5vw 2.5rem;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 4rem;
+      }
+      .footer-brand-name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        font-weight: 900;
+        color: var(--white);
+        margin-bottom: 1rem;
+      }
+      .footer-brand-name span {
+        color: var(--red);
+      }
+      .footer-brand-body {
+        font-size: 0.875rem;
+        line-height: 1.75;
+        color: rgba(255, 255, 255, 0.45);
+        margin-bottom: 1.5rem;
+        max-width: 260px;
+      }
+      .footer-donate {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border: 1.5px solid rgba(200, 16, 46, 0.5);
+        color: var(--red-light);
+        padding: 0.6rem 1.5rem;
+        border-radius: 2px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      .footer-donate:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: var(--white);
+      }
+      .footer-col-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.35);
+        margin-bottom: 1.25rem;
+      }
+      .footer-links {
+        list-style: none;
+      }
+      .footer-links li {
+        margin-bottom: 0.75rem;
+      }
+      .footer-links a {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.55);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--white);
+      }
+      .footer-socials {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 0.5rem;
+      }
+      .footer-social {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+        font-size: 0.8rem;
+        transition: all 0.2s;
+      }
+      .footer-social:hover {
+        border-color: var(--red);
+        color: var(--red);
+      }
+      .footer-bottom {
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .footer-copy {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.3);
+      }
+      .footer-event-info {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.3);
+        text-align: right;
+      }
+
+      /* ─── SCHEDULE / PROGRAM ─────────────────── */
+      #schedule {
+        background: var(--white);
+      }
+      #schedule .section-h2 {
+        max-width: 480px;
+      }
+
+      .schedule-doors {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: var(--red);
+        color: var(--white);
+        padding: 0.6rem 1.4rem;
+        border-radius: 100px;
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 2.5rem;
+        margin-bottom: 3rem;
+        box-shadow: 0 4px 20px rgba(200, 16, 46, 0.3);
+      }
+      .schedule-doors-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.7);
+        animation: pulse 2s infinite;
+      }
+
+      .timeline {
+        position: relative;
+        max-width: 760px;
+        margin: 0 auto;
+      }
+      /* Vertical spine */
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 38px;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: linear-gradient(
+          to bottom,
+          var(--red) 0%,
+          rgba(200, 16, 46, 0.15) 60%,
+          transparent 100%
+        );
+      }
+
+      .tl-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.75rem;
+        padding: 0 0 2.25rem 0;
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .tl-item.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* Stagger delays for timeline items */
+      .tl-item:nth-child(1) {
+        transition-delay: 0.05s;
+      }
+      .tl-item:nth-child(2) {
+        transition-delay: 0.12s;
+      }
+      .tl-item:nth-child(3) {
+        transition-delay: 0.19s;
+      }
+      .tl-item:nth-child(4) {
+        transition-delay: 0.26s;
+      }
+      .tl-item:nth-child(5) {
+        transition-delay: 0.33s;
+      }
+      .tl-item:nth-child(6) {
+        transition-delay: 0.4s;
+      }
+      .tl-item:nth-child(7) {
+        transition-delay: 0.47s;
+      }
+      .tl-item:nth-child(8) {
+        transition-delay: 0.54s;
+      }
+      .tl-item:nth-child(9) {
+        transition-delay: 0.61s;
+      }
+      .tl-item:nth-child(10) {
+        transition-delay: 0.68s;
+      }
+
+      .tl-node {
+        flex: 0 0 76px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+      }
+      .tl-dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 2.5px solid var(--red);
+        background: var(--white);
+        flex-shrink: 0;
+        transition: background 0.3s;
+        position: relative;
+        z-index: 1;
+      }
+      .tl-item:hover .tl-dot {
+        background: var(--red);
+      }
+      .tl-dot.red-fill {
+        background: var(--red);
+      }
+
+      .tl-num {
+        font-size: 0.62rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--gray-300);
+        margin-top: 0.4rem;
+      }
+
+      .tl-body {
+        padding-top: 0;
+        border-bottom: 1px solid var(--gray-100);
+        padding-bottom: 2rem;
+        flex: 1;
+      }
+      .tl-item:last-child .tl-body {
+        border-bottom: none;
+      }
+
+      .tl-tag {
+        display: inline-block;
+        font-size: 0.62rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.2rem 0.6rem;
+        border-radius: 2px;
+        margin-bottom: 0.5rem;
+      }
+      .tl-tag.tag-red {
+        background: rgba(200, 16, 46, 0.08);
+        color: var(--red);
+      }
+      .tl-tag.tag-navy {
+        background: rgba(27, 42, 94, 0.08);
+        color: var(--navy);
+      }
+      .tl-tag.tag-gold {
+        background: rgba(180, 140, 0, 0.1);
+        color: #8a6800;
+      }
+      .tl-tag.tag-gray {
+        background: var(--gray-100);
+        color: var(--gray-600);
+      }
+
+      .tl-title {
+        font-family: "DM Sans", sans-serif;
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: var(--gray-900);
+        line-height: 1.25;
+        margin-bottom: 0.3rem;
+      }
+      .tl-desc {
+        font-size: 0.85rem;
+        color: var(--gray-600);
+        line-height: 1.65;
+      }
+
+      /* ─── REGISTRATION PERKS ─────────────────── */
+      #perks {
+        background: var(--off-white);
+      }
+
+      .perks-subhead {
+        font-size: 1.05rem;
+        color: var(--gray-600);
+        line-height: 1.7;
+        max-width: 520px;
+        margin-top: 0.75rem;
+      }
+
+      .perks-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 3.5rem;
+      }
+
+      .perk-card {
+        background: var(--white);
+        border-radius: 6px;
+        padding: 2.25rem 2rem;
+        border: 1.5px solid transparent;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        transition:
+          border-color 0.3s,
+          box-shadow 0.3s,
+          transform 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .perk-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(200, 16, 46, 0.03) 0%,
+          transparent 60%
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .perk-card:hover {
+        border-color: var(--red);
+        box-shadow: 0 8px 40px rgba(200, 16, 46, 0.12);
+        transform: translateY(-5px);
+      }
+      .perk-card:hover::before {
+        opacity: 1;
+      }
+
+      .perk-icon-wrap {
+        width: 64px;
+        height: 64px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          rgba(200, 16, 46, 0.1) 0%,
+          rgba(200, 16, 46, 0.04) 100%
+        );
+        transition: background 0.3s;
+      }
+      .perk-card:hover .perk-icon-wrap {
+        background: linear-gradient(
+          135deg,
+          rgba(200, 16, 46, 0.18) 0%,
+          rgba(200, 16, 46, 0.08) 100%
+        );
+      }
+      .perk-icon-wrap svg {
+        width: 32px;
+        height: 32px;
+      }
+
+      .perk-number {
+        font-size: 0.65rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+      .perk-title {
+        font-family: "DM Sans", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 900;
+        color: var(--gray-900);
+        line-height: 1.2;
+        margin-bottom: 0.75rem;
+      }
+      .perk-desc {
+        font-size: 0.9rem;
+        color: var(--gray-600);
+        line-height: 1.7;
+      }
+
+      /* Perks CTA bar */
+      .perks-cta-bar {
+        margin-top: 3.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        padding: 2rem 2.5rem;
+        background: var(--gray-900);
+        border-radius: 6px;
+      }
+      .perks-cta-text {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--white);
+        line-height: 1.3;
+      }
+      .perks-cta-text span {
+        color: var(--red-light);
+        font-style: italic;
+      }
+
+      @media (max-width: 900px) {
+        .perks-grid {
+          grid-template-columns: 1fr;
+        }
+        .timeline::before {
+          left: 28px;
+        }
+        .tl-node {
+          flex: 0 0 56px;
+        }
+      }
+      @media (max-width: 600px) {
+        .perks-grid {
+          grid-template-columns: 1fr;
+        }
+        .perks-cta-bar {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+
+      /* ─── SCROLL ANIMATIONS ───────────────────── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+
+      /* ─── KEYFRAMES ───────────────────────────── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.4);
+          opacity: 0.7;
+        }
+      }
+      @keyframes ctaPulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(200, 16, 46, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 0 14px rgba(200, 16, 46, 0);
+        }
+      }
+      @keyframes scrollLine {
+        0%,
+        100% {
+          opacity: 0.4;
+          transform: scaleY(1);
+        }
+        50% {
+          opacity: 0.9;
+          transform: scaleY(1.2);
+        }
+      }
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ─── RESPONSIVE ──────────────────────────── */
+      @media (max-width: 900px) {
+        .nav-links,
+        .nav-actions {
+          display: none;
+        }
+        .nav-hamburger {
+          display: flex;
+        }
+        .merch-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .founder-inner {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+        }
+        .vendor-stats {
+          gap: 2rem;
+        }
+        .founder-quote {
+          position: relative;
+          left: auto;
+          bottom: auto;
+          margin-top: 1.5rem;
+          max-width: 100%;
+        }
+        #vendor-gateway {
+          grid-template-columns: 1fr !important;
+        }
+        #vendor-gateway > div:first-child {
+          min-height: 280px;
+        }
+        .speaker-card {
+          aspect-ratio: 1 / 1.15;
+        }
+        .sc-photo-ring {
+          width: 58%;
+          padding-bottom: 58%;
+        }
+        .speaker-card.featured .sc-photo-ring {
+          width: 62%;
+          padding-bottom: 62%;
+        }
+        .sc-info {
+          padding: 0.9rem 1rem 1rem;
+        }
+        .sc-name {
+          font-size: clamp(0.95rem, 2.6vw, 1.2rem);
+        }
+        .sc-role {
+          font-size: 0.68rem;
+        }
+      }
+      @media (max-width: 600px) {
+        section {
+          padding: 4rem 5vw;
+        }
+        .merch-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          gap: 0.75rem;
+          text-align: center;
+        }
+        .footer-event-info {
+          text-align: center;
+        }
+        .vendor-stats {
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+        .speakers-grid {
+          grid-template-columns: 1fr;
+        }
+        .speaker-card {
+          aspect-ratio: 1 / 1.28;
+        }
+        .sc-photo-ring {
+          width: 62%;
+          padding-bottom: 62%;
+          top: 3%;
+          right: 3%;
+          border-width: 3px;
+        }
+        .speaker-card.featured .sc-photo-ring {
+          width: 66%;
+          padding-bottom: 66%;
+        }
+        .sc-label {
+          font-size: 0.6rem;
+        }
+        .sc-swoosh {
+          height: 52%;
+        }
+        .sc-info {
+          padding: 0.9rem 0.95rem 1rem;
+        }
+        .sc-name {
+          font-size: clamp(0.95rem, 4.2vw, 1.15rem);
+        }
+        .sc-role {
+          font-size: 0.6rem;
+          letter-spacing: 0.05em;
+        }
+      }
+
+      /* ═══════════════════════════════════════════
+     DONATION MODAL
+  ═══════════════════════════════════════════ */
+
+      /* ── Backdrop ── */
+      #donate-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        background: rgba(10, 10, 14, 0.68);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+      #donate-backdrop.open {
+        display: flex;
+        animation: backdropIn 0.25s ease forwards;
+      }
+      #donate-backdrop.closing {
+        animation: backdropOut 0.2s ease forwards;
+      }
+      @keyframes backdropIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes backdropOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+
+      /* ── Modal shell ── */
+      #donate-modal {
+        position: relative;
+        width: 100%;
+        max-width: 440px;
+        background: var(--white);
+        border-radius: 20px;
+        box-shadow: 0 32px 80px rgba(0, 0, 0, 0.28);
+        overflow: hidden;
+        transform: scale(0.94) translateY(16px);
+        opacity: 0;
+        transition:
+          transform 0.38s cubic-bezier(0.22, 0.68, 0, 1.2),
+          opacity 0.28s ease;
+      }
+      #donate-backdrop.open #donate-modal {
+        animation: modalIn 0.38s cubic-bezier(0.22, 0.68, 0, 1.2) 0.04s forwards;
+      }
+      #donate-backdrop.closing #donate-modal {
+        animation: modalOut 0.18s ease forwards;
+      }
+      @keyframes modalIn {
+        from {
+          transform: scale(0.94) translateY(16px);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1) translateY(0);
+          opacity: 1;
+        }
+      }
+      @keyframes modalOut {
+        from {
+          transform: scale(1) translateY(0);
+          opacity: 1;
+        }
+        to {
+          transform: scale(0.96) translateY(8px);
+          opacity: 0;
+        }
+      }
+
+      /* ── Top accent bar ── */
+      .dm-top-bar {
+        height: 5px;
+        width: 100%;
+        background: linear-gradient(
+          90deg,
+          var(--red-dark),
+          var(--red) 55%,
+          var(--navy)
+        );
+      }
+
+      /* ── Background orb ── */
+      .dm-bg-orb {
+        position: absolute;
+        top: -120px;
+        right: -100px;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(200, 16, 46, 0.06) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      /* ── Inner padding container ── */
+      .dm-body {
+        padding: 1.75rem 2rem 1.75rem;
+        position: relative;
+      }
+
+      /* ── Close button ── */
+      .dm-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: none;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--gray-600);
+        font-size: 1.1rem;
+        line-height: 1;
+        transition:
+          background 0.15s,
+          color 0.15s,
+          transform 0.2s;
+      }
+      .dm-close:hover {
+        background: var(--gray-100);
+        color: var(--gray-900);
+        transform: rotate(90deg);
+      }
+
+      /* ── Eyebrow ── */
+      .dm-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+      }
+      .dm-eyebrow-icon {
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
+        background: rgba(200, 16, 46, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+      }
+      .dm-eyebrow-text {
+        font-size: 0.65rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--red);
+      }
+
+      /* ── Headline ── */
+      .dm-headline {
+        font-family: "Playfair Display", serif;
+        font-size: 1.65rem;
+        font-weight: 900;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        color: var(--navy);
+        margin-bottom: 0.4rem;
+      }
+      .dm-sub {
+        font-size: 0.85rem;
+        line-height: 1.65;
+        color: var(--gray-600);
+        margin-bottom: 1.4rem;
+      }
+
+      /* ── Frequency toggle ── */
+      .dm-freq-wrap {
+        display: inline-flex;
+        background: var(--gray-100);
+        border-radius: 10px;
+        padding: 4px;
+        gap: 4px;
+        margin-bottom: 1.25rem;
+      }
+      .dm-freq-btn {
+        position: relative;
+        padding: 0.4rem 1rem;
+        border-radius: 7px;
+        border: none;
+        background: transparent;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+        color: var(--gray-600);
+        transition: color 0.2s;
+        z-index: 1;
+      }
+      .dm-freq-btn.active {
+        color: var(--white);
+      }
+      .dm-freq-slider {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        bottom: 4px;
+        border-radius: 7px;
+        background: var(--red);
+        transition:
+          transform 0.28s cubic-bezier(0.22, 0.68, 0, 1.2),
+          width 0.28s ease;
+        pointer-events: none;
+        z-index: 0;
+        box-shadow: 0 3px 12px rgba(200, 16, 46, 0.32);
+      }
+
+      /* ── Amount label ── */
+      .dm-label {
+        font-size: 0.65rem;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--gray-300);
+        margin-bottom: 0.65rem;
+        display: block;
+      }
+
+      /* ── Quick-amount grid ── */
+      .dm-amounts {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+        margin-bottom: 0.85rem;
+      }
+      .dm-amt-btn {
+        position: relative;
+        padding: 0.75rem 0;
+        border-radius: 12px;
+        border: 2px solid var(--gray-300);
+        background: var(--white);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 900;
+        color: var(--gray-900);
+        cursor: pointer;
+        transition:
+          border-color 0.18s,
+          background 0.18s,
+          color 0.18s,
+          box-shadow 0.18s,
+          transform 0.15s;
+        overflow: hidden;
+      }
+      .dm-amt-btn:hover:not(.active) {
+        border-color: rgba(200, 16, 46, 0.35);
+        transform: translateY(-1px);
+      }
+      .dm-amt-btn.active {
+        border-color: var(--red);
+        background: var(--red);
+        color: var(--white);
+        box-shadow: 0 4px 16px rgba(200, 16, 46, 0.3);
+        transform: translateY(-2px);
+      }
+
+      /* ── Impact pill ── */
+      .dm-impact {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 0.6rem 0.8rem;
+        border-radius: 8px;
+        background: rgba(200, 16, 46, 0.05);
+        border: 1px solid rgba(200, 16, 46, 0.12);
+        margin-bottom: 1rem;
+        font-size: 0.78rem;
+        line-height: 1.55;
+        color: #7f1d1d;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition:
+          max-height 0.3s ease,
+          opacity 0.25s ease,
+          margin 0.25s ease;
+      }
+      .dm-impact.show {
+        max-height: 80px;
+        opacity: 1;
+      }
+      .dm-impact-icon {
+        flex-shrink: 0;
+        font-size: 0.9rem;
+        margin-top: 0.05rem;
+      }
+
+      /* ── Custom input ── */
+      .dm-input-wrap {
+        position: relative;
+        margin-bottom: 1.25rem;
+      }
+      .dm-input-prefix {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.15rem;
+        font-weight: 900;
+        color: var(--gray-300);
+        transition: color 0.2s;
+        pointer-events: none;
+        line-height: 1;
+      }
+      .dm-input-wrap:focus-within .dm-input-prefix {
+        color: var(--red);
+      }
+      .dm-custom-input {
+        width: 100%;
+        padding: 0.9rem 1rem 0.9rem 2rem;
+        border: 2px solid var(--gray-300);
+        border-radius: 12px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 900;
+        color: var(--navy);
+        background: var(--white);
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .dm-custom-input::placeholder {
+        color: var(--gray-300);
+        font-weight: 400;
+        font-size: 0.95rem;
+      }
+      .dm-custom-input:focus {
+        border-color: var(--red);
+        box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.12);
+      }
+      .dm-input-clear {
+        position: absolute;
+        right: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--gray-100);
+        border: none;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.6rem;
+        color: var(--gray-600);
+        transition: background 0.15s;
+      }
+      .dm-input-clear:hover {
+        background: var(--gray-300);
+      }
+      .dm-input-wrap.has-value .dm-input-clear {
+        display: flex;
+      }
+
+      /* ── CTA Button ── */
+      .dm-cta {
+        width: 100%;
+        padding: 1rem;
+        border-radius: 12px;
+        border: none;
+        background: linear-gradient(
+          135deg,
+          var(--red-dark) 0%,
+          var(--red) 55%,
+          var(--red-light) 100%
+        );
+        color: var(--white);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0 8px 28px rgba(200, 16, 46, 0.35);
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s,
+          background 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .dm-cta:hover:not(:disabled) {
+        transform: translateY(-2px) scale(1.015);
+        box-shadow: 0 12px 36px rgba(200, 16, 46, 0.42);
+      }
+      .dm-cta:active:not(:disabled) {
+        transform: scale(0.98);
+      }
+      .dm-cta:disabled {
+        background: var(--gray-100);
+        color: var(--gray-300);
+        box-shadow: none;
+        cursor: not-allowed;
+      }
+      /* Shimmer sweep */
+      .dm-cta::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          105deg,
+          transparent 40%,
+          rgba(255, 255, 255, 0.14) 50%,
+          transparent 60%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 2.6s linear infinite;
+      }
+      .dm-cta:disabled::after {
+        display: none;
+      }
+      @keyframes shimmer {
+        from {
+          background-position: 200% 0;
+        }
+        to {
+          background-position: -200% 0;
+        }
+      }
+
+      /* Success state */
+      .dm-cta.success {
+        background: linear-gradient(135deg, #166534, #15803d);
+        box-shadow: 0 8px 24px rgba(22, 101, 52, 0.3);
+        animation: none;
+      }
+      .dm-cta.success::after {
+        display: none;
+      }
+
+      /* Spinner */
+      .dm-spinner {
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        display: none;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .dm-cta.processing .dm-spinner {
+        display: block;
+      }
+      .dm-cta.processing .dm-cta-label {
+        display: none;
+      }
+
+      /* ── Trust row ── */
+      .dm-trust {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 1.1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--gray-100);
+      }
+      .dm-secure {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.72rem;
+        color: var(--gray-300);
+        font-weight: 500;
+      }
+      .dm-secure svg {
+        width: 13px;
+        height: 13px;
+      }
+      .dm-payment-icons {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        opacity: 0.55;
+      }
+      .dm-visa {
+        font-family: "Playfair Display", serif;
+        font-size: 0.85rem;
+        font-weight: 900;
+        letter-spacing: 0.05em;
+        color: var(--gray-300);
+      }
+      .dm-mc-wrap {
+        display: flex;
+        align-items: center;
+      }
+      .dm-mc-left {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--gray-300);
+      }
+      .dm-mc-right {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--gray-100);
+        margin-left: -7px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .dm-stripe {
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: var(--gray-300);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a class="nav-logo" href="#">
+        <img
+          width="56"
+          height="56"
+          src="./assets/images/logo.png"
+          alt="RealTalk Summit"
+        />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#speakers">Speakers</a></li>
+        <li><a href="#schedule">Program</a></li>
+        <li><a href="#moments">Moments</a></li>
+        <li><a href="#merch">Merch</a></li>
+        <li style="position: relative">
+          <a
+            href="./sponsorships.html"
+            style="display: inline-flex; align-items: center; gap: 0.4rem"
+          >
+            Sponsorship
+            <span
+              style="
+                display: inline-block;
+                padding: 0.18rem 0.45rem;
+                background: #c8102e;
+                color: #fff;
+                font-size: 0.55rem;
+                font-weight: 800;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                border-radius: 3px;
+                animation: pulse 2.5s infinite;
+                line-height: 1.5;
+              "
+              >Join Us</span
+            >
+          </a>
+        </li>
+        <li><a href="vendor-village.html">Vendor Village</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="btn-outline" href="#footer">Donate</a>
+        <a class="btn-solid" href="#hero">Register</a>
+      </div>
+      <div class="nav-hamburger" onclick="toggleMenu(this)">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-video-wrap">
+        <div class="hero-video-fallback"></div>
+        <!-- Drop in a video src if you have one: -->
+        <!-- <video autoplay muted loop playsinline>
+      <source src="your-video.mp4" type="video/mp4">
+    </video> -->
+      </div>
+      <div class="hero-shape-1"></div>
+      <div class="hero-shape-2"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-dot"></div>
+          <span>Registration Now Open</span>
+        </div>
+        <h1 class="hero-h1">
+          <em>Family Matters:</em><br />
+          Because Strong Families<br />Build Strong Futures
+        </h1>
+        <p class="hero-sub">
+          Join the Real Talk Summit for a powerful day of real conversations,
+          biblical insight, and practical guidance for every season of life.
+        </p>
+        <p class="hero-meta">
+          <strong>April 18th</strong> &nbsp;·&nbsp; Faith Temple Church of God
+          of Kalamazoo
+        </p>
+        <a class="hero-cta" href="#">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+          Secure Early Bird Spot — $25
+        </a>
+      </div>
+      <div class="hero-scroll">
+        <div class="hero-scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- AUDIENCE BAR -->
+    <div id="audience">
+      <div class="audience-inner">
+        <span class="audience-label">A Space for Everyone</span>
+        <span class="audience-item">Single</span>
+        <span class="audience-sep"></span>
+        <span class="audience-item">Married</span>
+        <span class="audience-sep"></span>
+        <span class="audience-item">Widowed</span>
+        <span class="audience-sep"></span>
+        <span class="audience-item">Divorced</span>
+      </div>
+    </div>
+
+    <!-- SPEAKERS -->
+    <section id="speakers">
+      <div class="reveal">
+        <p class="section-eyebrow">Speakers</p>
+        <h2 class="section-h2">Voices That <em>Move</em> You</h2>
+        <p class="section-body">
+          Hear from anointed leaders who speak truth with clarity, compassion,
+          and conviction.
+        </p>
+      </div>
+
+      <div class="speakers-grid">
+        <!-- ── Speaker 1: Whitney Labelle Davis Moss (Just Whiti) ── -->
+        <div class="speaker-card featured reveal reveal-delay-1">
+          <div class="sc-circle-top"></div>
+          <div class="sc-photo-ring">
+            <img
+              src="./assets/images/speaker-1.jpeg"
+              alt="Whitney Labelle Davis Moss (Just Whiti)"
+            />
+          </div>
+          <span class="sc-label">Speaker:</span>
+          <div class="sc-swoosh"></div>
+          <div class="sc-info">
+            <p class="sc-name">Whitney Labelle Davis Moss (Just Whiti)</p>
+            <p class="sc-role">Summit Speaker</p>
+          </div>
+        </div>
+
+        <!-- ── Speaker 2: Elder Gregory & Gwendolyn Jennings ── -->
+        <div class="speaker-card reveal reveal-delay-2">
+          <div class="sc-circle-top"></div>
+          <div class="sc-photo-ring">
+            <img
+              src="./assets/images/speaker-2.jpeg"
+              alt="Elder Gregory & Gwendolyn Jennings"
+            />
+          </div>
+          <span class="sc-label">Speaker:</span>
+          <div class="sc-swoosh"></div>
+          <div class="sc-info">
+            <p class="sc-name">Elder Gregory &amp; Gwendolyn Jennings</p>
+            <p class="sc-role">Summit Speakers</p>
+          </div>
+        </div>
+
+        <!-- ── Speaker 3: Dr. Ivy Butler (navy accent) ── -->
+        <div
+          class="speaker-card reveal reveal-delay-3"
+          style="background: var(--navy)"
+        >
+          <div
+            class="sc-circle-top"
+            style="background: rgba(255, 255, 255, 0.12)"
+          ></div>
+          <div class="sc-photo-ring" style="background: var(--navy-light)">
+            <img src="./assets/images/speaker-3.jpeg" alt="Dr. Ivy Butler" />
+          </div>
+          <span class="sc-label">Speaker:</span>
+          <div class="sc-swoosh"></div>
+          <div class="sc-info">
+            <p class="sc-name">Dr. Ivy Butler</p>
+            <p class="sc-role" style="color: var(--navy)">Summit Speaker</p>
+          </div>
+        </div>
+
+        <!-- ── Speaker 4: Elder Noah Nicholson & Mallory Nicholson ── -->
+        <div class="speaker-card reveal reveal-delay-4">
+          <div class="sc-circle-top"></div>
+          <div class="sc-photo-ring">
+            <img
+              src="./assets/images/speaker-4.jpeg"
+              alt="Elder Noah Nicholson & Mallory Nicholson"
+            />
+          </div>
+          <span class="sc-label">Speaker:</span>
+          <div class="sc-swoosh"></div>
+          <div class="sc-info">
+            <p class="sc-name">Elder Noah Nicholson &amp; Mallory Nicholson</p>
+            <p class="sc-role">Summit Speakers</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHEDULE / PROGRAM -->
+    <section id="schedule">
+      <div class="reveal">
+        <p class="section-eyebrow">Program</p>
+        <h2 class="section-h2">The Day's <em>Journey</em></h2>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <div class="schedule-doors">
+          <div class="schedule-doors-dot"></div>
+          Doors Open — 12:00 PM
+        </div>
+      </div>
+
+      <div class="timeline" id="timeline">
+        <div class="tl-item">
+          <div class="tl-node">
+            <div class="tl-dot red-fill"></div>
+            <span class="tl-num">01</span>
+          </div>
+          <div class="tl-body">
+            <span class="tl-tag tag-navy">Opening</span>
+            <p class="tl-title">Introduction of MC</p>
+            <p class="tl-desc">
+              Setting the tone — your Master of Ceremonies welcomes the
+              community and casts the vision for the day.
+            </p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-node">
+            <div class="tl-dot"></div>
+            <span class="tl-num">02</span>
+          </div>
+          <div class="tl-body">
+            <span class="tl-tag tag-gray">Acknowledgment</span>
+            <p class="tl-title">Recognition of Sponsors</p>
+            <p class="tl-desc">
+              Honoring the partners who made this summit possible, including
+              Majestic Insurance Agency, LLC.
+            </p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-node">
+            <div class="tl-dot"></div>
+            <span class="tl-num">03</span>
+          </div>
+          <div class="tl-body">
+            <span class="tl-tag tag-red">Worship</span>
+            <p class="tl-title">Praise &amp; Worship</p>
+            <p class="tl-desc">
+              A powerful time of collective worship to prepare every heart to
+              receive and respond to truth.
+            </p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-node">
+            <div class="tl-dot"></div>
+            <span class="tl-num">04</span>
+          </div>
+          <div class="tl-body">
+            <span class="tl-tag tag-red">Speaker</span>
+            <p class="tl-title">1st Speaker</p>
+            <p class="tl-desc">
+              Real conversations begin. An anointed voice opens the dialogue
+              with biblical depth and lived experience.
+            </p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-node">
+            <div class="tl-dot"></div>
+            <span class="tl-num">05</span>
+          </div>
+          <div class="tl-body">
+            <span class="tl-tag tag-red">Speaker</span>
+            <p class="tl-title">2nd Speaker</p>
+            <p class="tl-desc">
+              Building the momentum — the second voice deepens the conversation
+              with practical, spirit-led guidance.
+            </p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-node">
+            <div class="tl-dot"></div>
+            <span class="tl-num">06</span>
+          </div>
+          <div class="tl-body">
+            <span class="tl-tag tag-gold">Giveaway</span>
+            <p class="tl-title">First Giveaway 🎁</p>
+            <p class="tl-desc">
+              A celebration moment — curated prizes for our blessed attendees.
+              Must be present to win!
+            </p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-node">
+            <div class="tl-dot"></div>
+            <span class="tl-num">07</span>
+          </div>
+          <div class="tl-body">
+            <span class="tl-tag tag-red">Speakers</span>
+            <p class="tl-title">3rd &amp; 4th Speakers</p>
+            <p class="tl-desc">
+              Back-to-back fire — two voices covering the terrain of family,
+              faith, and forward movement.
+            </p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-node">
+            <div class="tl-dot"></div>
+            <span class="tl-num">08</span>
+          </div>
+          <div class="tl-body">
+            <span class="tl-tag tag-gold">Giveaway</span>
+            <p class="tl-title">Second Giveaway 🎁</p>
+            <p class="tl-desc">
+              Another round of blessed surprises before we head into the final
+              stretch of the program.
+            </p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-node">
+            <div class="tl-dot"></div>
+            <span class="tl-num">09</span>
+          </div>
+          <div class="tl-body">
+            <span class="tl-tag tag-red">Keynote</span>
+            <p class="tl-title">5th Speaker — Keynote</p>
+            <p class="tl-desc">
+              The closing prophetic voice. A message designed to send you home
+              transformed, equipped, and encouraged.
+            </p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-node">
+            <div class="tl-dot red-fill"></div>
+            <span class="tl-num">10</span>
+          </div>
+          <div class="tl-body">
+            <span class="tl-tag tag-navy">Closing</span>
+            <p class="tl-title">Open Q&amp;A</p>
+            <p class="tl-desc">
+              The real talk continues. An open floor for questions, connection,
+              and the conversations that change everything.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOMENTS -->
+    <section id="moments">
+      <div class="reveal">
+        <p class="section-eyebrow">Past Summits</p>
+        <h2 class="section-h2">Real Moments.<br />Real <em>Impact.</em></h2>
+      </div>
+      <div class="marquee-track">
+        <div class="marquee-inner">
+          <!-- 12 cards (6 unique, duplicated for seamless loop) -->
+          <div class="moment-card mc1">
+            <div class="moment-card-overlay">
+              <span class="moment-card-label">2024 Summit</span>
+            </div>
+          </div>
+          <div class="moment-card mc2">
+            <div class="moment-card-overlay">
+              <span class="moment-card-label">Worship Moment</span>
+            </div>
+          </div>
+          <div class="moment-card mc3">
+            <div class="moment-card-overlay">
+              <span class="moment-card-label">Community</span>
+            </div>
+          </div>
+          <div class="moment-card mc4">
+            <div class="moment-card-overlay">
+              <span class="moment-card-label">Breakout Session</span>
+            </div>
+          </div>
+          <div class="moment-card mc5">
+            <div class="moment-card-overlay">
+              <span class="moment-card-label">Keynote</span>
+            </div>
+          </div>
+          <div class="moment-card mc6">
+            <div class="moment-card-overlay">
+              <span class="moment-card-label">Altar Call</span>
+            </div>
+          </div>
+          <!-- duplicates -->
+          <div class="moment-card mc1">
+            <div class="moment-card-overlay">
+              <span class="moment-card-label">2024 Summit</span>
+            </div>
+          </div>
+          <div class="moment-card mc2">
+            <div class="moment-card-overlay">
+              <span class="moment-card-label">Worship Moment</span>
+            </div>
+          </div>
+          <div class="moment-card mc3">
+            <div class="moment-card-overlay">
+              <span class="moment-card-label">Community</span>
+            </div>
+          </div>
+          <div class="moment-card mc4">
+            <div class="moment-card-overlay">
+              <span class="moment-card-label">Breakout Session</span>
+            </div>
+          </div>
+          <div class="moment-card mc5">
+            <div class="moment-card-overlay">
+              <span class="moment-card-label">Keynote</span>
+            </div>
+          </div>
+          <div class="moment-card mc6">
+            <div class="moment-card-overlay">
+              <span class="moment-card-label">Altar Call</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MERCH -->
+    <section id="merch">
+      <div
+        class="reveal"
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          flex-wrap: wrap;
+          gap: 1rem;
+        "
+      >
+        <div>
+          <p class="section-eyebrow">Official Merch</p>
+          <h2 class="section-h2">Wear the <em>Movement</em></h2>
+        </div>
+        <a href="#" class="btn-outline">Shop All</a>
+      </div>
+
+      <div class="merch-grid">
+        <div class="merch-card reveal reveal-delay-1">
+          <div class="merch-img">
+            <div
+              class="merch-img-bg"
+              style="background: linear-gradient(135deg, #fff0f2, #ffe0e5)"
+            ></div>
+            <span class="merch-emoji">👕</span>
+          </div>
+          <div class="merch-body">
+            <p class="merch-name">Real Talk Tee</p>
+            <p class="merch-price">$30.00</p>
+            <button class="merch-btn">Order Now</button>
+          </div>
+        </div>
+
+        <div class="merch-card reveal reveal-delay-2">
+          <div class="merch-img">
+            <div
+              class="merch-img-bg"
+              style="background: linear-gradient(135deg, #eef0ff, #dde1ff)"
+            ></div>
+            <span class="merch-emoji">🧢</span>
+          </div>
+          <div class="merch-body">
+            <p class="merch-name">Summit Cap</p>
+            <p class="merch-price">$25.00</p>
+            <button class="merch-btn">Order Now</button>
+          </div>
+        </div>
+
+        <div class="merch-card reveal reveal-delay-3">
+          <div class="merch-img">
+            <div
+              class="merch-img-bg"
+              style="background: linear-gradient(135deg, #fff5e0, #ffe8b5)"
+            ></div>
+            <span class="merch-emoji">🛍️</span>
+          </div>
+          <div class="merch-body">
+            <p class="merch-name">Tote Bag</p>
+            <p class="merch-price">$20.00</p>
+            <button class="merch-btn">Order Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VENDOR GATEWAY — split-screen teaser -->
+    <section
+      id="vendor-gateway"
+      style="
+        position: relative;
+        overflow: hidden;
+        min-height: 520px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      "
+      aria-label="Vendor Village teaser"
+    >
+      <!-- Left: image panel with navy overlay -->
+      <div style="position: relative; overflow: hidden; min-height: 520px">
+        <!-- Gradient stand-in (replace with a real img src if you have one) -->
+        <div
+          style="
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+              135deg,
+              #0d1535 0%,
+              #1b2a5e 40%,
+              #2a3f87 100%
+            );
+          "
+        ></div>
+        <!-- Marketplace-vibe pattern overlay -->
+        <div
+          style="
+            position: absolute;
+            inset: 0;
+            background-image:
+              radial-gradient(
+                circle at 30% 40%,
+                rgba(200, 16, 46, 0.18) 0%,
+                transparent 55%
+              ),
+              radial-gradient(
+                circle at 80% 80%,
+                rgba(255, 255, 255, 0.04) 0%,
+                transparent 50%
+              );
+          "
+        ></div>
+
+        <!-- Floating stat cards -->
+        <div
+          class="reveal"
+          style="
+            position: absolute;
+            bottom: 2.5rem;
+            left: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+          "
+        >
+          <div
+            style="
+              display: inline-flex;
+              align-items: center;
+              gap: 0.75rem;
+              padding: 0.75rem 1.25rem;
+              border-radius: 12px;
+              background: rgba(255, 255, 255, 0.1);
+              border: 1px solid rgba(255, 255, 255, 0.18);
+              backdrop-filter: blur(10px);
+            "
+          >
+            <span
+              style="
+                font-family: &quot;Playfair Display&quot;, serif;
+                font-size: 1.5rem;
+                font-weight: 900;
+                color: #fff;
+              "
+              >200+</span
+            >
+            <span
+              style="
+                font-size: 0.7rem;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: rgba(255, 255, 255, 0.65);
+              "
+              >Attendees</span
+            >
+          </div>
+          <div
+            style="
+              display: inline-flex;
+              align-items: center;
+              gap: 0.75rem;
+              padding: 0.75rem 1.25rem;
+              border-radius: 12px;
+              background: rgba(255, 255, 255, 0.1);
+              border: 1px solid rgba(255, 255, 255, 0.18);
+              backdrop-filter: blur(10px);
+            "
+          >
+            <span
+              style="
+                font-family: &quot;Playfair Display&quot;, serif;
+                font-size: 1.5rem;
+                font-weight: 900;
+                color: #fff;
+              "
+              >15</span
+            >
+            <span
+              style="
+                font-size: 0.7rem;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: rgba(255, 255, 255, 0.65);
+              "
+              >Vendor Spots</span
+            >
+          </div>
+        </div>
+
+        <!-- Blend edge toward right -->
+        <div
+          style="
+            position: absolute;
+            inset-y: 0;
+            right: 0;
+            width: 80px;
+            background: linear-gradient(to right, transparent, #faf9f7);
+          "
+        ></div>
+      </div>
+
+      <!-- Right: content panel -->
+      <div
+        style="
+          background: #faf9f7;
+          display: flex;
+          align-items: center;
+          padding: 5rem 8vw 5rem 4rem;
+        "
+      >
+        <div>
+          <!-- Eyebrow -->
+          <p class="reveal section-eyebrow" style="margin-bottom: 1rem">
+            Vendor Village
+          </p>
+
+          <!-- Headline -->
+          <h2
+            class="reveal reveal-delay-1"
+            style="
+              font-family: &quot;Playfair Display&quot;, serif;
+              font-size: clamp(2rem, 3.5vw, 3rem);
+              font-weight: 900;
+              line-height: 1.05;
+              letter-spacing: -0.02em;
+              color: #1b2a5e;
+              margin-bottom: 1.25rem;
+            "
+          >
+            Showcase Your
+            <em style="font-style: normal; color: #c8102e">Purpose.</em>
+          </h2>
+
+          <!-- Subline -->
+          <p
+            class="reveal reveal-delay-2"
+            style="
+              font-size: 1rem;
+              line-height: 1.75;
+              color: #6b6860;
+              max-width: 400px;
+              margin-bottom: 1.5rem;
+            "
+          >
+            Limited spots available in our Vendor Village. Connect with
+            attendees ready to invest in faith, wellness, and family‑centered
+            services.
+          </p>
+
+          <!-- Urgency badge -->
+          <div
+            class="reveal reveal-delay-2"
+            style="
+              display: inline-flex;
+              align-items: center;
+              gap: 0.5rem;
+              padding: 0.45rem 1rem;
+              border-radius: 100px;
+              background: rgba(200, 16, 46, 0.07);
+              border: 1px solid rgba(200, 16, 46, 0.18);
+              margin-bottom: 2rem;
+            "
+          >
+            <span
+              style="
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: #c8102e;
+                animation: pulse 2s infinite;
+                flex-shrink: 0;
+              "
+            ></span>
+            <span
+              style="
+                font-size: 0.7rem;
+                font-weight: 800;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: #c8102e;
+              "
+              >Limited spots — reserve yours now</span
+            >
+          </div>
+
+          <!-- CTA -->
+          <div class="reveal reveal-delay-3">
+            <a
+              href="vendor-village.html"
+              class="gw-cta"
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 0.75rem;
+                padding: 1rem 2.25rem;
+                border-radius: 3px;
+                text-decoration: none;
+                font-size: 0.85rem;
+                font-weight: 900;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: #fff;
+                background: linear-gradient(
+                  135deg,
+                  #9b0c22,
+                  #c8102e 55%,
+                  #e8304a
+                );
+                box-shadow: 0 8px 28px rgba(200, 16, 46, 0.38);
+                transition:
+                  transform 0.2s,
+                  box-shadow 0.2s;
+              "
+              onmouseover="
+                this.style.transform = 'scale(1.05) translateY(-2px)';
+                this.style.boxShadow = '0 14px 36px rgba(200,16,46,0.45)';
+              "
+              onmouseout="
+                this.style.transform = '';
+                this.style.boxShadow = '0 8px 28px rgba(200,16,46,0.38)';
+              "
+            >
+              Learn More &amp; Book
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+            <p style="margin-top: 0.85rem; font-size: 0.78rem; color: #d1cfc9">
+              Questions?
+              <a
+                href="mailto:vendors@realtalksummit.com"
+                style="color: #c8102e; text-decoration: none"
+                >vendors@realtalksummit.com</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VENDOR VILLAGE (original compact CTA block) -->
+    <!-- <section id="vendor">
+  <div class="vendor-bg-shape"></div>
+  <div class="vendor-bg-shape-2"></div>
+  <div class="vendor-inner reveal">
+    <p class="section-eyebrow vendor-eyebrow">Vendor Village</p>
+    <h2 class="vendor-h2">Partner<br>With Us</h2>
+    <p class="vendor-body">
+      Join our vendor village and connect with a community that's ready for what you bring. Whether you're a business owner, entrepreneur, or ministry — there's a table waiting for you here.
+    </p>
+    <a href="#" class="btn-white">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Learn More
+    </a>
+    <div class="vendor-stats">
+      <div>
+        <p class="vendor-stat-num">200+</p>
+        <p class="vendor-stat-label">Attendees Expected</p>
+      </div>
+      <div>
+        <p class="vendor-stat-num">15+</p>
+        <p class="vendor-stat-label">Vendor Spots</p>
+      </div>
+      <div>
+        <p class="vendor-stat-num">1 Day</p>
+        <p class="vendor-stat-label">Full Experience</p>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+    <!-- FOUNDER -->
+    <section id="founder">
+      <div class="founder-inner">
+        <div class="founder-img-wrap reveal">
+          <div class="founder-img-frame">
+            <!-- Placeholder for Lisa Walker portrait -->
+            <div
+              style="
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                  160deg,
+                  #8b0a1e 0%,
+                  #c8102e 40%,
+                  #1b2a5e 100%
+                );
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <div style="text-align: center; color: rgba(255, 255, 255, 0.3)">
+                <svg
+                  width="80"
+                  height="80"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"
+                  />
+                </svg>
+                <p
+                  style="
+                    font-size: 0.8rem;
+                    margin-top: 0.5rem;
+                    letter-spacing: 0.08em;
+                    text-transform: uppercase;
+                  "
+                >
+                  Lisa Walker
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="founder-deco"></div>
+          <div class="founder-deco-2"></div>
+          <div class="founder-quote">
+            <span class="founder-quote-mark">"</span>
+            <p>Restoration is possible — no matter what chapter you're in.</p>
+          </div>
+        </div>
+
+        <div class="founder-content reveal reveal-delay-2">
+          <p class="section-eyebrow">The Founder</p>
+          <h2 class="founder-h2">
+            Meet Lisa Walker —<br />The <em>Heart</em> Behind<br />Real Talk
+            Summit
+          </h2>
+          <p class="founder-body">
+            Lisa Walker didn't start the Real Talk Summit because everything in
+            her life was perfect. She started it because she knew too many
+            people were quietly suffering — in their marriages, in their
+            singlehood, in their grief — while wearing a Sunday smile.
+          </p>
+          <p class="founder-body">
+            Driven by a deep conviction that the church should be a place of
+            honest, healing conversation, Lisa created a space where real
+            families could have real talks, grounded in biblical truth and
+            practical wisdom.
+          </p>
+          <p class="founder-body">
+            Her message is simple and unwavering:
+            <strong>restoration is possible.</strong> Whether you've walked
+            through divorce, loss, betrayal, or simply the slow wear of life —
+            there is a path forward, and you don't have to walk it alone.
+          </p>
+          <p class="founder-sig">— Lisa Walker</p>
+          <a
+            href="#"
+            class="btn-solid"
+            style="
+              display: inline-flex;
+              align-items: center;
+              gap: 0.5rem;
+              margin-top: 2rem;
+              padding: 0.85rem 2rem;
+              text-decoration: none;
+              font-size: 0.9rem;
+            "
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+            Register for the Summit
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGISTRATION PERKS -->
+    <section id="perks">
+      <div class="reveal">
+        <p class="section-eyebrow">What's Included</p>
+        <h2 class="section-h2">Your <em>All-Access</em> Pass</h2>
+        <p class="perks-subhead">
+          Every registration is designed to fuel your growth and keep the
+          conversation going long after April 18th.
+        </p>
+      </div>
+
+      <div class="perks-grid">
+        <!-- Perk 1: Admission -->
+        <div class="perk-card reveal reveal-delay-1">
+          <div class="perk-icon-wrap">
+            <!-- Ticket SVG -->
+            <svg
+              viewBox="0 0 48 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6 16a2 2 0 0 1 2-2h32a2 2 0 0 1 2 2v4a4 4 0 0 0 0 8v4a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-4a4 4 0 0 0 0-8v-4z"
+                stroke="#C8102E"
+                stroke-width="2.5"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M18 14v20M22 18h8M22 24h6M22 30h8"
+                stroke="#C8102E"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <span class="perk-number">01 — Admission</span>
+          <p class="perk-title">Full Summit Admission</p>
+          <p class="perk-desc">
+            Complete access to every speaker session, panel, and program segment
+            throughout the entire day. No partial passes — you get the full
+            experience.
+          </p>
+        </div>
+
+        <!-- Perk 2: Goodie Bag -->
+        <div class="perk-card reveal reveal-delay-2">
+          <div class="perk-icon-wrap">
+            <!-- Gift bag SVG -->
+            <svg
+              viewBox="0 0 48 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="8"
+                y="20"
+                width="32"
+                height="22"
+                rx="2"
+                stroke="#C8102E"
+                stroke-width="2.5"
+              />
+              <path
+                d="M16 20v-4a8 8 0 0 1 16 0v4"
+                stroke="#C8102E"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M24 20v22M8 28h32"
+                stroke="#C8102E"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              />
+              <circle cx="24" cy="14" r="3" stroke="#C8102E" stroke-width="2" />
+            </svg>
+          </div>
+          <span class="perk-number">02 — Goodies</span>
+          <p class="perk-title">The Real Talk Goodie Bag</p>
+          <p class="perk-desc">
+            A curated collection of premium resources, devotionals, and
+            exclusive items handpicked to extend the summit's impact into your
+            everyday life.
+          </p>
+        </div>
+
+        <!-- Perk 3: Lanyard -->
+        <div class="perk-card reveal reveal-delay-3">
+          <div class="perk-icon-wrap">
+            <!-- Lanyard / badge SVG -->
+            <svg
+              viewBox="0 0 48 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M24 6 L16 14 H32 L24 6Z"
+                stroke="#C8102E"
+                stroke-width="2.5"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M16 14 Q12 14 12 18 V38 Q12 42 16 42 H32 Q36 42 36 38 V18 Q36 14 32 14 H16Z"
+                stroke="#C8102E"
+                stroke-width="2.5"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="18"
+                y="22"
+                width="12"
+                height="2.5"
+                rx="1.25"
+                fill="#C8102E"
+              />
+              <rect
+                x="18"
+                y="28"
+                width="8"
+                height="2.5"
+                rx="1.25"
+                fill="#C8102E"
+                opacity="0.5"
+              />
+              <circle cx="24" cy="14" r="2" fill="#C8102E" />
+            </svg>
+          </div>
+          <span class="perk-number">03 — Community</span>
+          <p class="perk-title">Official Event Lanyard</p>
+          <p class="perk-desc">
+            Your key to the Real Talk community. Wear it as your badge of
+            belonging — and carry the spirit of restoration with you wherever
+            you go.
+          </p>
+        </div>
+      </div>
+
+      <!-- CTA bar -->
+      <div class="perks-cta-bar reveal">
+        <p class="perks-cta-text">
+          Ready to secure your seat?<br /><span>Early Bird — only $25.</span>
+        </p>
+        <a
+          href="#hero"
+          class="btn-solid"
+          style="
+            padding: 0.9rem 2.5rem;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            white-space: nowrap;
+          "
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+          Register Now
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="footer">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand-name">Real<span>Talk</span> Summit</p>
+          <p class="footer-brand-body">
+            A powerful gathering for families at every stage — single, married,
+            widowed, and divorced. Come ready for real conversations.
+          </p>
+          <a href="#" class="footer-donate">❤ Donate to the Mission</a>
+        </div>
+
+        <div>
+          <p class="footer-col-title">Navigate</p>
+          <ul class="footer-links">
+            <li><a href="#speakers">Speakers</a></li>
+            <li><a href="#schedule">Program</a></li>
+            <li><a href="#moments">Moments</a></li>
+            <li><a href="#merch">Merch</a></li>
+            <li><a href="#founder">About Lisa</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-col-title">Partnerships</p>
+          <ul class="footer-links">
+            <li>
+              <a
+                href="vendor-village.html"
+                style="display: inline-flex; align-items: center; gap: 0.45rem"
+              >
+                Vendor Village
+                <span
+                  style="
+                    padding: 0.15rem 0.4rem;
+                    background: #c8102e;
+                    color: #fff;
+                    font-size: 0.5rem;
+                    font-weight: 800;
+                    letter-spacing: 0.1em;
+                    text-transform: uppercase;
+                    border-radius: 2px;
+                  "
+                  >Open</span
+                >
+              </a>
+            </li>
+            <li><a href="sponsorships.html">Sponsorships</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-col-title">Event Details</p>
+          <ul class="footer-links">
+            <li><a href="#">April 18th, 2026</a></li>
+            <li><a href="#">9:00 AM — 6:00 PM</a></li>
+            <li><a href="#">Faith Temple Church of God</a></li>
+            <li><a href="#">Kalamazoo, Michigan</a></li>
+            <li><a href="#">Early Bird: $25</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-col-title">Connect</p>
+          <div
+            class="footer-socials"
+            style="
+              flex-direction: column;
+              gap: 0.75rem;
+              align-items: flex-start;
+            "
+          >
+            <a
+              href="#"
+              class="footer-social"
+              style="
+                width: auto;
+                border-radius: 2px;
+                padding: 0 0.75rem;
+                gap: 0.5rem;
+                font-size: 0.8rem;
+                font-weight: 600;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                color: rgba(255, 255, 255, 0.5);
+              "
+            >
+              📘 Facebook
+            </a>
+            <a
+              href="#"
+              class="footer-social"
+              style="
+                width: auto;
+                border-radius: 2px;
+                padding: 0 0.75rem;
+                gap: 0.5rem;
+                font-size: 0.8rem;
+                font-weight: 600;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                color: rgba(255, 255, 255, 0.5);
+              "
+            >
+              📸 Instagram
+            </a>
+            <a
+              href="#"
+              class="footer-social"
+              style="
+                width: auto;
+                border-radius: 2px;
+                padding: 0 0.75rem;
+                gap: 0.5rem;
+                font-size: 0.8rem;
+                font-weight: 600;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                color: rgba(255, 255, 255, 0.5);
+              "
+            >
+              ▶ YouTube
+            </a>
+          </div>
+          <div style="margin-top: 1.5rem">
+            <p class="footer-col-title">Sponsored by</p>
+            <p style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.45)">
+              Majestic Insurance Agency, LLC
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 RealTalk Summit. All rights reserved.</p>
+        <p class="footer-event-info">
+          April 18 · Faith Temple Church of God · Kalamazoo, MI
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Scroll reveal (general)
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      reveals.forEach((el) => observer.observe(el));
+
+      // Timeline staggered reveal
+      const tlItems = document.querySelectorAll(".tl-item");
+      const tlObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
+      );
+      tlItems.forEach((el) => tlObserver.observe(el));
+
+      // Mobile menu toggle
+      function toggleMenu(btn) {
+        const links = document.querySelector(".nav-links");
+        const actions = document.querySelector(".nav-actions");
+        const open = links.style.display === "flex";
+        links.style.cssText = open
+          ? ""
+          : "display:flex;flex-direction:column;position:fixed;top:72px;left:0;right:0;background:rgba(255,255,255,0.97);padding:1.5rem 5vw;gap:1.25rem;border-bottom:1px solid #eee;z-index:99;";
+        actions.style.cssText = open
+          ? ""
+          : "display:flex;flex-direction:column;position:fixed;top:calc(72px + " +
+            (document.querySelectorAll(".nav-links li").length * 40 + 24) +
+            "px);left:0;right:0;background:rgba(255,255,255,0.97);padding:1rem 5vw 1.5rem;z-index:99;";
+        btn.querySelectorAll("span")[0].style.transform = open
+          ? ""
+          : "rotate(45deg) translate(5px,5px)";
+        btn.querySelectorAll("span")[1].style.opacity = open ? "" : "0";
+        btn.querySelectorAll("span")[2].style.transform = open
+          ? ""
+          : "rotate(-45deg) translate(5px,-5px)";
+      }
+
+      // Sticky nav background
+      window.addEventListener("scroll", () => {
+        const nav = document.querySelector("nav");
+        nav.style.background =
+          window.scrollY > 50
+            ? "rgba(255,255,255,0.95)"
+            : "rgba(255,255,255,0.72)";
+      });
+    </script>
+
+    <!-- ═══════════════════════════════════════════════
+     DONATION MODAL
+═══════════════════════════════════════════════ -->
+    <div
+      id="donate-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dm-title"
+      aria-describedby="dm-desc"
+    >
+      <div id="donate-modal">
+        <div class="dm-top-bar"></div>
+        <div class="dm-bg-orb"></div>
+
+        <div class="dm-body">
+          <!-- Close -->
+          <button
+            class="dm-close"
+            onclick="closeDonate()"
+            aria-label="Close donation modal"
+          >
+            ✕
+          </button>
+
+          <!-- Eyebrow -->
+          <div class="dm-eyebrow">
+            <div class="dm-eyebrow-icon">❤</div>
+            <span class="dm-eyebrow-text">Real Talk Summit</span>
+          </div>
+
+          <!-- Headline -->
+          <h2 id="dm-title" class="dm-headline">Sow into the Vision</h2>
+          <p id="dm-desc" class="dm-sub">
+            Support the Real Talk Summit in building stronger families and
+            futures.
+          </p>
+
+          <!-- Frequency toggle -->
+          <div class="dm-freq-wrap" id="dm-freq-wrap">
+            <div class="dm-freq-slider" id="dm-freq-slider"></div>
+            <button
+              class="dm-freq-btn active"
+              id="btn-once"
+              onclick="setFreq('once')"
+            >
+              Give Once
+            </button>
+            <button
+              class="dm-freq-btn"
+              id="btn-monthly"
+              onclick="setFreq('monthly')"
+            >
+              Give Monthly
+            </button>
+          </div>
+
+          <!-- Amount label -->
+          <span class="dm-label">Select Amount</span>
+
+          <!-- Quick-select amounts -->
+          <div class="dm-amounts">
+            <button
+              class="dm-amt-btn active"
+              onclick="selectAmt(this, 25)"
+              data-amt="25"
+            >
+              $25
+            </button>
+            <button
+              class="dm-amt-btn"
+              onclick="selectAmt(this, 50)"
+              data-amt="50"
+            >
+              $50
+            </button>
+            <button
+              class="dm-amt-btn"
+              onclick="selectAmt(this, 100)"
+              data-amt="100"
+            >
+              $100
+            </button>
+            <button
+              class="dm-amt-btn"
+              onclick="selectAmt(this, 500)"
+              data-amt="500"
+            >
+              $500
+            </button>
+          </div>
+
+          <!-- Impact message -->
+          <div class="dm-impact show" id="dm-impact">
+            <span class="dm-impact-icon">✦</span>
+            <span id="dm-impact-text"
+              >Covers one attendee's full summit experience.</span
+            >
+          </div>
+
+          <!-- Custom amount -->
+          <div class="dm-input-wrap" id="dm-input-wrap">
+            <span class="dm-input-prefix">$</span>
+            <input
+              id="dm-custom"
+              class="dm-custom-input"
+              type="text"
+              inputmode="decimal"
+              placeholder="Enter custom amount"
+              aria-label="Custom donation amount"
+              oninput="handleCustom(this)"
+            />
+            <button
+              class="dm-input-clear"
+              id="dm-clear"
+              onclick="clearCustom()"
+              aria-label="Clear custom amount"
+            >
+              ✕
+            </button>
+          </div>
+
+          <!-- CTA -->
+          <button class="dm-cta" id="dm-cta" onclick="handleDonate()" disabled>
+            <div class="dm-spinner"></div>
+            <span class="dm-cta-label" id="dm-cta-label">Select an Amount</span>
+            <span class="dm-cta-arrow" id="dm-cta-arrow" style="display: none"
+              >›</span
+            >
+          </button>
+
+          <!-- Trust row -->
+          <div class="dm-trust">
+            <div class="dm-secure">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <path d="m9 12 2 2 4-4" />
+              </svg>
+              Secure &amp; encrypted
+            </div>
+            <div class="dm-payment-icons" aria-label="Accepted payment methods">
+              <span class="dm-visa">VISA</span>
+              <div class="dm-mc-wrap" title="Mastercard">
+                <div class="dm-mc-left"></div>
+                <div class="dm-mc-right"></div>
+              </div>
+              <span class="dm-stripe">stripe</span>
+            </div>
+          </div>
+        </div>
+        <!-- /dm-body -->
+      </div>
+      <!-- /donate-modal -->
+    </div>
+    <!-- /donate-backdrop -->
+
+    <script>
+      // ── Donate modal state ─────────────────────────────────
+      const IMPACTS = {
+        25: "Covers one attendee's full summit experience.",
+        50: "Sponsors materials for two families.",
+        100: "Funds the goodie bags for four attendees.",
+        500: "Powers an entire breakout session.",
+      };
+
+      let dmSelectedAmt = 25;
+      let dmFrequency = "once";
+      let dmProcessing = false;
+      let dmSuccess = false;
+
+      // Open / close
+      function openDonate() {
+        resetDonate();
+        const bd = document.getElementById("donate-backdrop");
+        bd.classList.remove("closing");
+        bd.classList.add("open");
+        document.body.style.overflow = "hidden";
+        setTimeout(() => document.getElementById("btn-once").focus(), 80);
+      }
+
+      function closeDonate() {
+        const bd = document.getElementById("donate-backdrop");
+        bd.classList.add("closing");
+        setTimeout(() => {
+          bd.classList.remove("open", "closing");
+          document.body.style.overflow = "";
+        }, 220);
+      }
+
+      // Escape key
+      document.addEventListener("keydown", (e) => {
+        if (
+          e.key === "Escape" &&
+          document.getElementById("donate-backdrop").classList.contains("open")
+        ) {
+          closeDonate();
+        }
+      });
+
+      // Click outside
+      document
+        .getElementById("donate-backdrop")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeDonate();
+        });
+
+      // Reset state
+      function resetDonate() {
+        dmSelectedAmt = 25;
+        dmFrequency = "once";
+        dmProcessing = false;
+        dmSuccess = false;
+        document
+          .querySelectorAll(".dm-amt-btn")
+          .forEach((b) => b.classList.remove("active"));
+        document.querySelector('[data-amt="25"]').classList.add("active");
+        document.getElementById("dm-custom").value = "";
+        document.getElementById("dm-input-wrap").classList.remove("has-value");
+        setFreq("once");
+        updateImpact(25);
+        updateCTA();
+      }
+
+      // Frequency
+      function setFreq(f) {
+        dmFrequency = f;
+        const onceBtn = document.getElementById("btn-once");
+        const monthlyBtn = document.getElementById("btn-monthly");
+        const slider = document.getElementById("dm-freq-slider");
+        onceBtn.classList.toggle("active", f === "once");
+        monthlyBtn.classList.toggle("active", f === "monthly");
+        const wrap = document.getElementById("dm-freq-wrap");
+        if (f === "once") {
+          slider.style.width = onceBtn.offsetWidth + "px";
+          slider.style.transform = "translateX(0)";
+        } else {
+          slider.style.width = monthlyBtn.offsetWidth + "px";
+          slider.style.transform =
+            "translateX(" + (onceBtn.offsetWidth + 4) + "px)";
+        }
+        updateCTA();
+      }
+
+      // Quick select
+      function selectAmt(btn, amt) {
+        dmSelectedAmt = amt;
+        document
+          .querySelectorAll(".dm-amt-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById("dm-custom").value = "";
+        document.getElementById("dm-input-wrap").classList.remove("has-value");
+        updateImpact(amt);
+        updateCTA();
+      }
+
+      // Custom input
+      function handleCustom(input) {
+        const val = input.value.replace(/[^0-9.]/g, "");
+        input.value = val;
+        const wrap = document.getElementById("dm-input-wrap");
+        wrap.classList.toggle("has-value", val.length > 0);
+        if (val) {
+          dmSelectedAmt = null;
+          document
+            .querySelectorAll(".dm-amt-btn")
+            .forEach((b) => b.classList.remove("active"));
+          hideImpact();
+        }
+        updateCTA();
+      }
+
+      function clearCustom() {
+        const input = document.getElementById("dm-custom");
+        input.value = "";
+        document.getElementById("dm-input-wrap").classList.remove("has-value");
+        updateCTA();
+        input.focus();
+      }
+
+      // Impact message
+      function updateImpact(amt) {
+        const el = document.getElementById("dm-impact");
+        const txt = document.getElementById("dm-impact-text");
+        if (IMPACTS[amt]) {
+          txt.textContent = IMPACTS[amt];
+          el.classList.add("show");
+        } else {
+          el.classList.remove("show");
+        }
+      }
+      function hideImpact() {
+        document.getElementById("dm-impact").classList.remove("show");
+      }
+
+      // CTA label
+      function updateCTA() {
+        const cta = document.getElementById("dm-cta");
+        const label = document.getElementById("dm-cta-label");
+        const arrow = document.getElementById("dm-cta-arrow");
+        const customVal = document.getElementById("dm-custom").value;
+        const amt = customVal ? parseFloat(customVal) : dmSelectedAmt;
+        const valid = amt && !isNaN(amt) && amt >= 1;
+        cta.disabled = !valid || dmProcessing;
+        if (valid) {
+          const display = amt % 1 === 0 ? amt : amt.toFixed(2);
+          const suffix = dmFrequency === "monthly" ? "/mo" : "";
+          label.textContent = `Give $${display}${suffix}`;
+          arrow.style.display = "inline";
+        } else {
+          label.textContent = "Select an Amount";
+          arrow.style.display = "none";
+        }
+      }
+
+      // Submit / process
+      async function handleDonate() {
+        if (dmProcessing || dmSuccess) return;
+        dmProcessing = true;
+        const cta = document.getElementById("dm-cta");
+        cta.classList.add("processing");
+        cta.disabled = true;
+
+        await new Promise((r) => setTimeout(r, 1600));
+
+        cta.classList.remove("processing");
+        cta.classList.add("success");
+        document.getElementById("dm-cta-label").textContent =
+          "✓  Thank you! God bless you.";
+        document.getElementById("dm-cta-label").style.display = "block";
+        document.getElementById("dm-cta-arrow").style.display = "none";
+        dmProcessing = false;
+        dmSuccess = true;
+
+        setTimeout(() => closeDonate(), 2200);
+      }
+
+      // Init slider position on load
+      window.addEventListener("load", () => setFreq("once"));
+
+      // Wire up ALL "Donate" links/buttons on the page
+      document
+        .querySelectorAll('[href="#footer"], .footer-donate')
+        .forEach((el) => {
+          el.addEventListener("click", (e) => {
+            e.preventDefault();
+            openDonate();
+          });
+        });
+      // Wire nav "Donate" button specifically
+      document.querySelectorAll(".btn-outline").forEach((el) => {
+        if (el.textContent.trim().toLowerCase().includes("donat")) {
+          el.addEventListener("click", (e) => {
+            e.preventDefault();
+            openDonate();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

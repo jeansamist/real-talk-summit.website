@@ -52,6 +52,9 @@ nav {
   transition: background 0.3s;
 }
 .nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   font-family: 'Playfair Display', serif;
   font-size: 1.2rem; font-weight: 900;
   color: var(--white); letter-spacing: -0.02em;
@@ -775,7 +778,10 @@ footer {
      NAV
 ════════════════════════════════════════ -->
 <nav>
-  <a class="nav-logo" href="real-talk-summit.html">Real<em>Talk</em> Summit</a>
+  <a class="nav-logo" href="real-talk-summit.html">
+    <img width="56" height="56" src="./assets/images/logo.png" alt="RealTalk Summit" />
+    Real<em>Talk</em> Summit
+  </a>
   <ul class="nav-links">
     <li><a href="real-talk-summit.html#speakers">Speakers</a></li>
     <li><a href="real-talk-summit.html#schedule">Program</a></li>
@@ -1220,7 +1226,7 @@ footer {
   </div>
 
   <div class="footer-bottom">
-    <p class="footer-copy">© 2026 Real Talk Summit. All rights reserved.</p>
+    <p class="footer-copy">© 2026 RealTalk Summit. All rights reserved.</p>
     <p class="footer-copy">April 18 · Faith Temple Church of God · Kalamazoo, MI</p>
   </div>
 </footer>

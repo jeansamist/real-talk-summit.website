@@ -22,6 +22,8 @@
         --gray-300: #d1cfc9;
         --gray-600: #6b6860;
         --gray-900: #1a1917;
+        --page-max: 1200px;
+        --page-pad: max(5vw, calc((100% - var(--page-max)) / 2));
       }
 
       *,
@@ -50,7 +52,7 @@
         left: 0;
         right: 0;
         z-index: 100;
-        padding: 0 5vw;
+        padding: 0 var(--page-pad);
         height: 72px;
         display: flex;
         align-items: center;
@@ -77,13 +79,13 @@
       }
       .nav-links {
         display: flex;
-        gap: 2.5rem;
+        gap: 2rem;
         list-style: none;
         align-items: center;
       }
       .nav-links a {
-        font-size: 0.875rem;
-        font-weight: 500;
+        font-size: 0.8rem;
+        font-weight: 600;
         letter-spacing: 0.04em;
         text-transform: uppercase;
         color: var(--gray-900);
@@ -92,6 +94,19 @@
       }
       .nav-links a:hover {
         color: var(--red);
+      }
+      .nav-badge {
+        display: inline-block;
+        padding: 0.18rem 0.45rem;
+        background: #c8102e;
+        color: #fff;
+        font-size: 0.55rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border-radius: 3px;
+        animation: pulse 2.5s infinite;
+        line-height: 1.5;
       }
       .nav-actions {
         display: flex;
@@ -214,7 +229,7 @@
         position: relative;
         z-index: 2;
         max-width: 860px;
-        padding: 0 5vw;
+        padding: 0 var(--page-pad);
         text-align: center;
         animation: fadeUp 1s ease both;
       }
@@ -337,7 +352,7 @@
         background: var(--gray-900);
         border-top: 1px solid rgba(200, 16, 46, 0.3);
         border-bottom: 1px solid rgba(200, 16, 46, 0.3);
-        padding: 2rem 5vw;
+        padding: 2rem var(--page-pad);
       }
       .audience-inner {
         display: flex;
@@ -374,7 +389,7 @@
 
       /* ─── SECTION WRAPPER ─────────────────────── */
       section {
-        padding: 6rem 5vw;
+        padding: 6rem var(--page-pad);
       }
       .section-eyebrow {
         font-size: 0.75rem;
@@ -752,7 +767,7 @@
         position: relative;
         overflow: hidden;
         background: var(--red);
-        padding: 8rem 5vw;
+        padding: 8rem var(--page-pad);
       }
       .vendor-bg-shape {
         position: absolute;
@@ -867,8 +882,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition:
-          opacity 0.3s;
+        transition: opacity 0.3s;
       }
       .founder-img-frame:hover img {
         opacity: 1;
@@ -954,7 +968,7 @@
       /* ─── FOOTER ──────────────────────────────── */
       footer {
         background: var(--gray-900);
-        padding: 5rem 5vw 2.5rem;
+        padding: 5rem var(--page-pad) 2.5rem;
       }
       .footer-grid {
         display: grid;
@@ -1534,7 +1548,7 @@
       }
       @media (max-width: 600px) {
         section {
-          padding: 4rem 5vw;
+          padding: 4rem var(--page-pad);
         }
         .merch-grid {
           grid-template-columns: 1fr;
@@ -2153,23 +2167,8 @@
             href="./sponsorships.html"
             style="display: inline-flex; align-items: center; gap: 0.4rem"
           >
-            Sponsorship
-            <span
-              style="
-                display: inline-block;
-                padding: 0.18rem 0.45rem;
-                background: #c8102e;
-                color: #fff;
-                font-size: 0.55rem;
-                font-weight: 800;
-                letter-spacing: 0.12em;
-                text-transform: uppercase;
-                border-radius: 3px;
-                animation: pulse 2.5s infinite;
-                line-height: 1.5;
-              "
-              >Join Us</span
-            >
+            Sponsorships
+            <span class="nav-badge">Join Us</span>
           </a>
         </li>
         <li><a href="vendor-village.html">Vendor Village</a></li>
@@ -3310,7 +3309,19 @@
                 >
               </a>
             </li>
-            <li><a href="sponsorships.html">Sponsorships</a></li>
+            <li><a href="sponsorships.html">Sponsorships
+              <span
+                style="
+                  padding: 0.15rem 0.4rem;
+                  background: #c8102e;
+                  color: #fff;
+                  font-size: 0.5rem;
+                  font-weight: 800;
+                  letter-spacing: 0.1em;
+                  text-transform: uppercase;
+                  border-radius: 2px;
+                "
+                >Open</span</a></li>
             <li><a href="volunteer.html">Volunteer</a></li>
           </ul>
         </div>
@@ -3441,12 +3452,12 @@
         const open = links.style.display === "flex";
         links.style.cssText = open
           ? ""
-          : "display:flex;flex-direction:column;position:fixed;top:72px;left:0;right:0;background:rgba(255,255,255,0.97);padding:1.5rem 5vw;gap:1.25rem;border-bottom:1px solid #eee;z-index:99;";
+          : "display:flex;flex-direction:column;position:fixed;top:72px;left:0;right:0;background:rgba(255,255,255,0.97);padding:1.5rem var(--page-pad);gap:1.25rem;border-bottom:1px solid #eee;z-index:99;";
         actions.style.cssText = open
           ? ""
           : "display:flex;flex-direction:column;position:fixed;top:calc(72px + " +
             (document.querySelectorAll(".nav-links li").length * 40 + 24) +
-            "px);left:0;right:0;background:rgba(255,255,255,0.97);padding:1rem 5vw 1.5rem;z-index:99;";
+            "px);left:0;right:0;background:rgba(255,255,255,0.97);padding:1rem var(--page-pad) 1.5rem;z-index:99;";
         btn.querySelectorAll("span")[0].style.transform = open
           ? ""
           : "rotate(45deg) translate(5px,5px)";

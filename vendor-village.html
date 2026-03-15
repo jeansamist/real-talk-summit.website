@@ -1411,92 +1411,6 @@
         </p>
       </section>
 
-      <!-- ═══ VENDOR INQUIRY MODAL ═══════════════════════════════════════════════ -->
-      <div class="vv-modal" id="vendor-modal" aria-hidden="true">
-        <div
-          class="vv-modal-card"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="vendor-modal-title"
-        >
-          <button class="vv-modal-close" type="button" aria-label="Close">
-            ×
-          </button>
-          <p class="vv-modal-eyebrow">Vendor Table Inquiry</p>
-          <h3 id="vendor-modal-title" class="vv-modal-title">
-            Reserve Your Table
-          </h3>
-          <p class="vv-modal-sub">
-            Tell us a bit about your business and we will follow up quickly.
-          </p>
-          <form id="vendor-modal-form" class="vv-modal-body">
-            <label class="vv-modal-field">
-              <span>Business Name</span>
-              <input
-                id="vendor-business"
-                name="business_name"
-                type="text"
-                autocomplete="organization"
-                required
-              />
-            </label>
-            <label class="vv-modal-field">
-              <span>Business Type</span>
-              <input
-                id="vendor-type"
-                name="business_type"
-                type="text"
-                placeholder="e.g., Apparel, Food, Services"
-                required
-              />
-            </label>
-            <label class="vv-modal-field">
-              <span>Owner Name</span>
-              <input
-                id="vendor-owner"
-                name="owner_name"
-                type="text"
-                autocomplete="name"
-                required
-              />
-            </label>
-            <label class="vv-modal-field">
-              <span>Email</span>
-              <input
-                id="vendor-email"
-                name="email"
-                type="email"
-                autocomplete="email"
-                required
-              />
-            </label>
-            <label class="vv-modal-field">
-              <span>Selected Table</span>
-              <input
-                id="vendor-table"
-                name="selected_table"
-                type="text"
-                readonly
-                required
-              />
-            </label>
-            <label class="vv-modal-field">
-              <span>Message</span>
-              <textarea
-                id="vendor-message"
-                name="message"
-                placeholder="Share any questions, setup needs, or notes."
-                required
-              ></textarea>
-            </label>
-            <div class="vv-modal-actions">
-              <button class="vv-modal-cancel" type="button">Cancel</button>
-              <button class="vv-modal-send" type="submit">Send Inquiry</button>
-            </div>
-          </form>
-        </div>
-      </div>
-
       <!-- ═══ FAQ ══════════════════════════════════════════════════════════════════ -->
       <section
         class="vv-section"
@@ -1807,6 +1721,92 @@
       </footer>
     </div>
     <!-- /page-wrap -->
+
+    <!-- ═══ VENDOR INQUIRY MODAL ═══════════════════════════════════════════════ -->
+    <div class="vv-modal" id="vendor-modal" aria-hidden="true">
+      <div
+        class="vv-modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="vendor-modal-title"
+      >
+        <button class="vv-modal-close" type="button" aria-label="Close">
+          ×
+        </button>
+        <p class="vv-modal-eyebrow">Vendor Table Inquiry</p>
+        <h3 id="vendor-modal-title" class="vv-modal-title">
+          Reserve Your Table
+        </h3>
+        <p class="vv-modal-sub">
+          Tell us a bit about your business and we will follow up quickly.
+        </p>
+        <form id="vendor-modal-form" class="vv-modal-body">
+          <label class="vv-modal-field">
+            <span>Business Name</span>
+            <input
+              id="vendor-business"
+              name="business_name"
+              type="text"
+              autocomplete="organization"
+              required
+            />
+          </label>
+          <label class="vv-modal-field">
+            <span>Business Type</span>
+            <input
+              id="vendor-type"
+              name="business_type"
+              type="text"
+              placeholder="e.g., Apparel, Food, Services"
+              required
+            />
+          </label>
+          <label class="vv-modal-field">
+            <span>Owner Name</span>
+            <input
+              id="vendor-owner"
+              name="owner_name"
+              type="text"
+              autocomplete="name"
+              required
+            />
+          </label>
+          <label class="vv-modal-field">
+            <span>Email</span>
+            <input
+              id="vendor-email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+            />
+          </label>
+          <label class="vv-modal-field">
+            <span>Selected Table</span>
+            <input
+              id="vendor-table"
+              name="selected_table"
+              type="text"
+              readonly
+              required
+            />
+          </label>
+          <label class="vv-modal-field">
+            <span>Message</span>
+            <textarea
+              id="vendor-message"
+              name="message"
+              placeholder="Share any questions, setup needs, or notes."
+              required
+            ></textarea>
+          </label>
+          <div class="vv-modal-actions">
+            <button class="vv-modal-cancel" type="button">Cancel</button>
+            <button class="vv-modal-send" type="submit">Send Inquiry</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <script>
       // ── Scroll reveal ─────────────────────────────────────────────────────

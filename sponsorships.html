@@ -99,7 +99,7 @@
         font-weight: 600;
         letter-spacing: 0.06em;
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.6);
+        color: rgba(5, 0, 0, 0.6);
         text-decoration: none;
         transition: color 0.2s;
       }
@@ -1499,7 +1499,7 @@
     <!-- ════════════════════════════════════════
      NAV
 ════════════════════════════════════════ -->
-    <nav>
+    <nav style="background: #fff;">
       <a class="nav-logo" href="real-talk-summit.html">
         <img
           width="56"
@@ -2273,16 +2273,6 @@
         { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
       );
       revEls.forEach((el) => revObs.observe(el));
-
-      // ── Sticky nav tint ────────────────────────────────────────────────────────
-      window.addEventListener(
-        "scroll",
-        () => {
-          document.querySelector("nav").style.background =
-            window.scrollY > 80 ? "rgba(10,6,4,0.94)" : "rgba(10,6,4,0.72)";
-        },
-        { passive: true },
-      );
 
       // ── Mobile menu ────────────────────────────────────────────────────────────
       function toggleMenu(btn) {

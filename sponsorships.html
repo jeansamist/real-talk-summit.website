@@ -865,6 +865,160 @@
       .tier-cta:hover {
         transform: translateY(-2px) scale(1.02);
       }
+
+      /* ── SPONSOR MODAL ───────────────────────────────────────────────────── */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(9, 9, 12, 0.75);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.2s ease,
+          visibility 0.2s ease;
+        z-index: 300;
+      }
+      .modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      body.modal-open {
+        overflow: hidden;
+      }
+      .modal-card {
+        width: min(640px, 100%);
+        background: var(--white);
+        border-radius: 18px;
+        padding: 2.25rem;
+        position: relative;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+        max-height: calc(100vh - 3rem);
+        overflow: auto;
+      }
+      .modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: none;
+        background: var(--gray-100);
+        color: var(--gray-900);
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          background 0.2s;
+      }
+      .modal-close:hover {
+        transform: rotate(6deg);
+        background: var(--gray-200);
+      }
+      .modal-eyebrow {
+        font-size: 0.65rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-weight: 800;
+        color: var(--red);
+      }
+      .modal-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+        margin: 0.5rem 0 0.65rem;
+        color: var(--gray-900);
+      }
+      .modal-sub {
+        font-size: 0.95rem;
+        color: var(--slate);
+        margin-bottom: 1.5rem;
+      }
+      .modal-body {
+        display: grid;
+        gap: 1rem;
+      }
+      .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .form-field span {
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--slate-light);
+      }
+      .form-field input,
+      .form-field textarea {
+        width: 100%;
+        padding: 0.75rem 0.9rem;
+        border-radius: 10px;
+        border: 1px solid var(--gray-200);
+        font-size: 0.95rem;
+        font-family: "DM Sans", sans-serif;
+        color: var(--gray-900);
+        background: var(--white);
+        transition:
+          border 0.2s,
+          box-shadow 0.2s;
+      }
+      .form-field textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+      .form-field input:focus,
+      .form-field textarea:focus {
+        outline: none;
+        border-color: var(--red);
+        box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.15);
+      }
+      .modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        margin-top: 0.35rem;
+      }
+      .modal-cancel {
+        border: 1px solid var(--gray-200);
+        background: transparent;
+        color: var(--slate);
+        padding: 0.7rem 1.2rem;
+        border-radius: 999px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          border 0.2s,
+          color 0.2s;
+      }
+      .modal-cancel:hover {
+        border-color: var(--red);
+        color: var(--red);
+      }
+      .modal-send {
+        border: none;
+        background: var(--red);
+        color: var(--white);
+        padding: 0.7rem 1.4rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0 12px 25px rgba(200, 16, 46, 0.35);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .modal-send:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 28px rgba(200, 16, 46, 0.45);
+      }
       .cta-on-red {
         background: rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(4px);
@@ -1199,9 +1353,7 @@
         box-shadow: 0 10px 32px rgba(200, 16, 46, 0.5);
       }
 
-      /* ════════════════════════════════════════════
-   FOOTER
-════════════════════════════════════════════ */
+      /* ─── FOOTER ──────────────────────────────── */
       footer {
         background: var(--gray-900);
         padding: 5rem var(--page-pad) 2.5rem;
@@ -1214,96 +1366,47 @@
       }
       .footer-brand-name {
         font-family: "Playfair Display", serif;
-        font-size: 1.35rem;
+        font-size: 1.4rem;
         font-weight: 900;
         color: var(--white);
-        margin-bottom: 0.75rem;
+        margin-bottom: 1rem;
       }
-      .footer-brand-name em {
-        font-style: normal;
-        color: var(--red-light);
+      .footer-brand-name span {
+        color: var(--red);
       }
       .footer-brand-body {
         font-size: 0.875rem;
         line-height: 1.75;
-        color: rgba(255, 255, 255, 0.42);
-        max-width: 260px;
+        color: rgba(255, 255, 255, 0.45);
         margin-bottom: 1.5rem;
+        max-width: 260px;
       }
-      .footer-donate-btn {
+      .footer-donate {
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        padding: 0.6rem 1.5rem;
-        border-radius: 3px;
         border: 1.5px solid rgba(200, 16, 46, 0.5);
         color: var(--red-light);
-        font-size: 0.78rem;
+        padding: 0.6rem 1.5rem;
+        border-radius: 2px;
+        font-size: 0.8rem;
         font-weight: 700;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         text-decoration: none;
         transition: all 0.2s;
       }
-      .footer-donate-btn:hover {
+      .footer-donate:hover {
         background: var(--red);
         border-color: var(--red);
         color: var(--white);
       }
-
-      /* Majestic logo block */
-      .footer-majestic {
-        margin-top: 1.5rem;
-        padding-top: 1.25rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.07);
-      }
-      .majestic-logo-box {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.6rem;
-        padding: 0.6rem 0.85rem;
-        border-radius: 6px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(27, 42, 94, 0.4);
-      }
-      .majestic-m {
-        width: 32px;
-        height: 32px;
-        border-radius: 6px;
-        background: var(--navy);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: "Playfair Display", serif;
-        font-size: 1rem;
-        font-weight: 900;
-        color: var(--white);
-        flex-shrink: 0;
-      }
-      .majestic-text {
-      }
-      .majestic-text-top {
-        font-size: 0.65rem;
-        font-weight: 800;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--white);
-        line-height: 1;
-      }
-      .majestic-text-bot {
-        font-size: 0.55rem;
-        color: rgba(255, 255, 255, 0.4);
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        margin-top: 0.1rem;
-      }
-
       .footer-col-title {
-        font-size: 0.65rem;
-        font-weight: 800;
-        letter-spacing: 0.18em;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.28);
+        color: rgba(255, 255, 255, 0.35);
         margin-bottom: 1.25rem;
       }
       .footer-links {
@@ -1314,37 +1417,50 @@
       }
       .footer-links a {
         font-size: 0.875rem;
-        color: rgba(255, 255, 255, 0.5);
+        color: rgba(255, 255, 255, 0.55);
         text-decoration: none;
         transition: color 0.2s;
       }
       .footer-links a:hover {
         color: var(--white);
       }
-      .footer-active-badge {
-        display: inline-block;
-        padding: 0.12rem 0.4rem;
-        background: var(--red);
-        color: var(--white);
-        font-size: 0.5rem;
-        font-weight: 800;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        border-radius: 2px;
-        margin-left: 0.35rem;
+      .footer-socials {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 0.5rem;
+      }
+      .footer-social {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+        font-size: 0.8rem;
+        transition: all 0.2s;
+      }
+      .footer-social:hover {
+        border-color: var(--red);
+        color: var(--red);
       }
       .footer-bottom {
         padding-top: 2rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
         display: flex;
         align-items: center;
         justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 0.75rem;
       }
       .footer-copy {
-        font-size: 0.78rem;
-        color: rgba(255, 255, 255, 0.25);
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.3);
+      }
+      .footer-event-info {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.3);
+        text-align: right;
       }
 
       /* ════════════════════════════════════════════
@@ -1482,11 +1598,22 @@
         .sp-section {
           padding: 4rem var(--page-pad);
         }
+        .modal-card {
+          padding: 1.6rem;
+        }
+        .modal-actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
         .footer-grid {
           grid-template-columns: 1fr;
         }
         .footer-bottom {
           flex-direction: column;
+          gap: 0.75rem;
+          text-align: center;
+        }
+        .footer-event-info {
           text-align: center;
         }
         .hero-stats {
@@ -1788,8 +1915,9 @@
           </div>
           <div class="tier-footer">
             <a
-              href="mailto:info@kingdomtalk.com?subject=Platinum Sponsorship Inquiry"
-              class="tier-cta cta-on-red"
+              href="#"
+              class="tier-cta cta-on-red tier-select"
+              data-offer="Platinum — $500"
             >
               Claim Platinum Spot
             </a>
@@ -1834,8 +1962,9 @@
           </div>
           <div class="tier-footer">
             <a
-              href="mailto:info@kingdomtalk.com?subject=Gold Sponsorship Inquiry"
-              class="tier-cta cta-on-red"
+              href="#"
+              class="tier-cta cta-on-red tier-select"
+              data-offer="Gold — $350"
             >
               Claim Gold Spot
             </a>
@@ -1875,8 +2004,9 @@
           </div>
           <div class="tier-footer">
             <a
-              href="mailto:info@kingdomtalk.com?subject=Silver Sponsorship Inquiry"
-              class="tier-cta cta-on-white"
+              href="#"
+              class="tier-cta cta-on-white tier-select"
+              data-offer="Silver — $200"
             >
               Claim Silver Spot
             </a>
@@ -1914,8 +2044,9 @@
           </div>
           <div class="tier-footer">
             <a
-              href="mailto:info@kingdomtalk.com?subject=Bronze Sponsorship Inquiry"
-              class="tier-cta cta-on-white"
+              href="#"
+              class="tier-cta cta-on-white tier-select"
+              data-offer="Bronze — $100"
             >
               Claim Bronze Spot
             </a>
@@ -1950,8 +2081,9 @@
           </div>
           <div class="tier-footer">
             <a
-              href="mailto:info@kingdomtalk.com?subject=Supporter Inquiry"
-              class="tier-cta cta-on-white"
+              href="#"
+              class="tier-cta cta-on-white tier-select"
+              data-offer="Supporter — $50"
             >
               Become a Supporter
             </a>
@@ -1959,6 +2091,76 @@
         </div>
       </div>
     </section>
+
+    <!-- ════════════════════════════════════════
+     SPONSORSHIP INQUIRY MODAL
+════════════════════════════════════════ -->
+    <div class="modal-overlay" id="sponsor-modal" aria-hidden="true">
+      <div
+        class="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="sponsor-modal-title"
+      >
+        <button class="modal-close" type="button" aria-label="Close">
+          ×
+        </button>
+        <div class="modal-header">
+          <p class="modal-eyebrow">Sponsorship Inquiry</p>
+          <h3 id="sponsor-modal-title" class="modal-title">
+            Claim Your Package
+          </h3>
+          <p class="modal-sub">
+            Share a few details and we will follow up with next steps.
+          </p>
+        </div>
+        <form id="sponsor-form" class="modal-body">
+          <label class="form-field">
+            <span>Business Name</span>
+            <input
+              id="sponsor-business"
+              name="business"
+              type="text"
+              autocomplete="organization"
+              required
+            />
+          </label>
+          <label class="form-field">
+            <span>Email</span>
+            <input
+              id="sponsor-email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+            />
+          </label>
+          <label class="form-field">
+            <span>Selected Offer</span>
+            <input
+              id="sponsor-offer"
+              name="offer"
+              type="text"
+              readonly
+              required
+            />
+          </label>
+          <label class="form-field">
+            <span>Message</span>
+            <textarea
+              id="sponsor-message"
+              name="message"
+              placeholder="Tell us about your goals or any questions."
+              required
+            ></textarea>
+          </label>
+          <div class="modal-actions">
+            <button class="modal-cancel" type="button">Cancel</button>
+            <button class="modal-send" type="submit">Send Inquiry</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <!-- ════════════════════════════════════════
      IMPACT BREAKDOWN
@@ -2101,59 +2303,37 @@
     <!-- ════════════════════════════════════════
      FOOTER
 ════════════════════════════════════════ -->
-    <footer>
+    <footer id="footer">
       <div class="footer-grid">
-        <!-- Brand column -->
         <div>
-          <p class="footer-brand-name">Real<em>Talk</em> Summit</p>
+          <p class="footer-brand-name">Real<span>Talk</span> Summit</p>
           <p class="footer-brand-body">
-            Fueling restoration, healing, and the building of strong families.
-            April 18 · Faith Temple Church of God · Kalamazoo, MI.
+            A powerful gathering for families at every stage — single, married,
+            widowed, and divorced. Come ready for real conversations.
           </p>
-          <a class="footer-donate-btn" href="real-talk-summit.html#footer"
-            >❤ Donate to the Mission</a
-          >
-
-          <!-- Majestic Insurance logo block -->
-          <div class="footer-majestic">
-            <p class="footer-col-title" style="margin-bottom: 0.75rem">
-              Presenting Sponsor
-            </p>
-            <div class="majestic-logo-box">
-              <div class="majestic-m">M</div>
-              <div class="majestic-text">
-                <p class="majestic-text-top">Majestic</p>
-                <p class="majestic-text-bot">Insurance Agency, LLC</p>
-              </div>
-            </div>
-          </div>
+          <a href="#" class="footer-donate">❤ Donate to the Mission</a>
         </div>
 
-        <!-- Navigate -->
         <div>
           <p class="footer-col-title">Navigate</p>
           <ul class="footer-links">
-            <li><a href="real-talk-summit.html#speakers">Speakers</a></li>
-            <li><a href="real-talk-summit.html#schedule">Program</a></li>
-            <li><a href="real-talk-summit.html#moments">Moments</a></li>
-            <li><a href="real-talk-summit.html#merch">Merch</a></li>
-            <li><a href="real-talk-summit.html#founder">About Lisa</a></li>
+            <li><a href="#speakers">Speakers</a></li>
+            <li><a href="#schedule">Program</a></li>
+            <li><a href="#moments">Moments</a></li>
+            <li><a href="#merch">Merch</a></li>
+            <li><a href="#founder">About Lisa</a></li>
           </ul>
         </div>
 
-        <!-- Partnerships -->
         <div>
           <p class="footer-col-title">Partnerships</p>
           <ul class="footer-links">
             <li>
-              <a href="vendor-village.html">
+              <a
+                href="vendor-village.html"
+                style="display: inline-flex; align-items: center; gap: 0.45rem"
+              >
                 Vendor Village
-                <span class="footer-active-badge">Open</span>
-              </a>
-            </li>
-            <li>
-              <a href="sponsorships.html" style="color: var(--red-light)"
-                >Sponsorships
                 <span
                   style="
                     padding: 0.15rem 0.4rem;
@@ -2165,97 +2345,112 @@
                     text-transform: uppercase;
                     border-radius: 2px;
                   "
-                  >Open</span</a
-              >
+                  >Open</span
+                >
+              </a>
             </li>
+            <li><a href="sponsorships.html">Sponsorships
+              <span
+                style="
+                  padding: 0.15rem 0.4rem;
+                  background: #c8102e;
+                  color: #fff;
+                  font-size: 0.5rem;
+                  font-weight: 800;
+                  letter-spacing: 0.1em;
+                  text-transform: uppercase;
+                  border-radius: 2px;
+                "
+                >Open</span</a></li>
             <li><a href="volunteer.html">Volunteer</a></li>
           </ul>
         </div>
 
-        <!-- Event -->
         <div>
-          <p class="footer-col-title">Event</p>
+          <p class="footer-col-title">Event Details</p>
           <ul class="footer-links">
             <li><a href="#">April 18th, 2026</a></li>
-            <li><a href="#">Doors Open 12:00 PM</a></li>
+            <li><a href="#">9:00 AM — 6:00 PM</a></li>
             <li><a href="#">Faith Temple Church of God</a></li>
             <li><a href="#">Kalamazoo, Michigan</a></li>
-            <li><a href="real-talk-summit.html#hero">Early Bird — $25</a></li>
+            <li><a href="#">Early Bird: $25</a></li>
           </ul>
         </div>
 
-        <!-- Connect -->
         <div>
           <p class="footer-col-title">Connect</p>
-          <div style="display: flex; flex-direction: column; gap: 0.75rem">
+          <div
+            class="footer-socials"
+            style="
+              flex-direction: column;
+              gap: 0.75rem;
+              align-items: flex-start;
+            "
+          >
             <a
               href="#"
+              class="footer-social"
               style="
+                width: auto;
+                border-radius: 2px;
+                padding: 0 0.75rem;
+                gap: 0.5rem;
                 font-size: 0.8rem;
                 font-weight: 600;
                 letter-spacing: 0.05em;
                 text-transform: uppercase;
-                color: rgba(255, 255, 255, 0.45);
-                text-decoration: none;
-                transition: color 0.2s;
+                color: rgba(255, 255, 255, 0.5);
               "
-              onmouseover="this.style.color = '#C8102E'"
-              onmouseout="this.style.color = 'rgba(255,255,255,0.45)'"
             >
               📘 Facebook
             </a>
             <a
               href="#"
+              class="footer-social"
               style="
+                width: auto;
+                border-radius: 2px;
+                padding: 0 0.75rem;
+                gap: 0.5rem;
                 font-size: 0.8rem;
                 font-weight: 600;
                 letter-spacing: 0.05em;
                 text-transform: uppercase;
-                color: rgba(255, 255, 255, 0.45);
-                text-decoration: none;
-                transition: color 0.2s;
+                color: rgba(255, 255, 255, 0.5);
               "
-              onmouseover="this.style.color = '#C8102E'"
-              onmouseout="this.style.color = 'rgba(255,255,255,0.45)'"
             >
               📸 Instagram
             </a>
             <a
               href="#"
+              class="footer-social"
               style="
+                width: auto;
+                border-radius: 2px;
+                padding: 0 0.75rem;
+                gap: 0.5rem;
                 font-size: 0.8rem;
                 font-weight: 600;
                 letter-spacing: 0.05em;
                 text-transform: uppercase;
-                color: rgba(255, 255, 255, 0.45);
-                text-decoration: none;
-                transition: color 0.2s;
+                color: rgba(255, 255, 255, 0.5);
               "
-              onmouseover="this.style.color = '#C8102E'"
-              onmouseout="this.style.color = 'rgba(255,255,255,0.45)'"
             >
               ▶ YouTube
             </a>
           </div>
           <div style="margin-top: 1.5rem">
-            <p class="footer-col-title">Contact</p>
-            <a
-              href="mailto:info@kingdomtalk.com"
-              style="
-                font-size: 0.8rem;
-                color: var(--red-light);
-                text-decoration: none;
-              "
-            >
-              info@kingdomtalk.com
-            </a>
+            <p class="footer-col-title">Sponsored by</p>
+            <p style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.45)">
+              Majestic Insurance Agency, LLC
+            </p>
           </div>
         </div>
       </div>
 
       <div class="footer-bottom">
         <p class="footer-copy">© 2026 RealTalk Summit. All rights reserved.</p>
-        <p class="footer-copy">
+        <p class="footer-event-info">
           April 18 · Faith Temple Church of God · Kalamazoo, MI
         </p>
       </div>
@@ -2304,6 +2499,70 @@
           });
         });
       }
+
+      // ── Sponsorship modal + mailto ───────────────────────────────────────────
+      const sponsorModal = document.getElementById("sponsor-modal");
+      const sponsorForm = document.getElementById("sponsor-form");
+      const offerField = document.getElementById("sponsor-offer");
+      const businessField = document.getElementById("sponsor-business");
+      const emailField = document.getElementById("sponsor-email");
+      const messageField = document.getElementById("sponsor-message");
+      const modalClose = sponsorModal.querySelector(".modal-close");
+      const modalCancel = sponsorModal.querySelector(".modal-cancel");
+
+      const openSponsorModal = (offer) => {
+        offerField.value = offer || "";
+        sponsorModal.classList.add("active");
+        sponsorModal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+        setTimeout(() => businessField.focus(), 50);
+      };
+
+      const closeSponsorModal = () => {
+        sponsorModal.classList.remove("active");
+        sponsorModal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
+      };
+
+      document.querySelectorAll(".tier-select").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          openSponsorModal(btn.dataset.offer);
+        });
+      });
+
+      modalClose.addEventListener("click", closeSponsorModal);
+      modalCancel.addEventListener("click", closeSponsorModal);
+      sponsorModal.addEventListener("click", (e) => {
+        if (e.target === sponsorModal) closeSponsorModal();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && sponsorModal.classList.contains("active")) {
+          closeSponsorModal();
+        }
+      });
+
+      sponsorForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const business = businessField.value.trim();
+        const email = emailField.value.trim();
+        const offer = offerField.value.trim();
+        const message = messageField.value.trim();
+        const subject = `Sponsorship Package Inquiry — ${offer || "General"}`;
+        const body = [
+          `Business Name: ${business}`,
+          `Email: ${email}`,
+          `Selected Offer: ${offer}`,
+          "Message:",
+          message,
+        ].join("\n");
+        const mailto = `mailto:info@kingdomtalk.com?subject=${encodeURIComponent(
+          subject,
+        )}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailto;
+        closeSponsorModal();
+        sponsorForm.reset();
+      });
     </script>
   </body>
 </html>

@@ -1890,6 +1890,76 @@
           ? ""
           : "rotate(-45deg) translate(5px,-5px)";
       }
+
+      // ── Vendor modal + mailto ─────────────────────────────────────────────
+      const vendorModal = document.getElementById("vendor-modal");
+      const vendorForm = document.getElementById("vendor-modal-form");
+      const vendorBusiness = document.getElementById("vendor-business");
+      const vendorType = document.getElementById("vendor-type");
+      const vendorOwner = document.getElementById("vendor-owner");
+      const vendorEmail = document.getElementById("vendor-email");
+      const vendorTable = document.getElementById("vendor-table");
+      const vendorMessage = document.getElementById("vendor-message");
+      const vendorClose = vendorModal.querySelector(".vv-modal-close");
+      const vendorCancel = vendorModal.querySelector(".vv-modal-cancel");
+
+      const openVendorModal = (table) => {
+        vendorTable.value = table || "";
+        vendorModal.classList.add("active");
+        vendorModal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("vv-modal-open");
+        setTimeout(() => vendorBusiness.focus(), 50);
+      };
+
+      const closeVendorModal = () => {
+        vendorModal.classList.remove("active");
+        vendorModal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("vv-modal-open");
+      };
+
+      document.querySelectorAll(".vv-select").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          openVendorModal(btn.dataset.table);
+        });
+      });
+
+      vendorClose.addEventListener("click", closeVendorModal);
+      vendorCancel.addEventListener("click", closeVendorModal);
+      vendorModal.addEventListener("click", (e) => {
+        if (e.target === vendorModal) closeVendorModal();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && vendorModal.classList.contains("active")) {
+          closeVendorModal();
+        }
+      });
+
+      vendorForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const business = vendorBusiness.value.trim();
+        const type = vendorType.value.trim();
+        const owner = vendorOwner.value.trim();
+        const email = vendorEmail.value.trim();
+        const table = vendorTable.value.trim();
+        const message = vendorMessage.value.trim();
+        const subject = `Vendor Table Inquiry — ${table || "General"}`;
+        const body = [
+          `Business Name: ${business}`,
+          `Business Type: ${type}`,
+          `Owner Name: ${owner}`,
+          `Email: ${email}`,
+          `Selected Table: ${table}`,
+          "Message:",
+          message,
+        ].join("\n");
+        const mailto = `mailto:info@kingdomtalk.com?subject=${encodeURIComponent(
+          subject,
+        )}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailto;
+        closeVendorModal();
+        vendorForm.reset();
+      });
     </script>
   </body>
 </html>

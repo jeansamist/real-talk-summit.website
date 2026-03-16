@@ -627,16 +627,15 @@
       }
       .marquee-track {
         margin-top: 3rem;
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
         overflow: hidden;
       }
       .marquee-inner {
         display: flex;
         gap: 1.5rem;
-        animation: marquee 30s linear infinite;
         width: max-content;
-      }
-      .marquee-inner:hover {
-        animation-play-state: paused;
       }
       .moment-card {
         flex: 0 0 280px;
@@ -3328,6 +3327,42 @@
         { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
       );
       tlItems.forEach((el) => tlObserver.observe(el));
+
+      // Past Summits auto slider (start → end once)
+      function autoScrollMoments() {
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        if (reduceMotion) return;
+
+        document.querySelectorAll(".marquee-track").forEach((track) => {
+          const inner = track.querySelector(".marquee-inner");
+          if (!inner) return;
+          const maxScroll = inner.scrollWidth - track.clientWidth;
+          if (maxScroll <= 0) return;
+
+          const speed = 40; // px per second
+          const duration = Math.min(
+            45000,
+            Math.max(15000, (maxScroll / speed) * 1000),
+          );
+          const startTime = performance.now();
+
+          track.scrollLeft = 0;
+
+          const step = (now) => {
+            const progress = Math.min((now - startTime) / duration, 1);
+            track.scrollLeft = maxScroll * progress;
+            if (progress < 1) {
+              requestAnimationFrame(step);
+            }
+          };
+
+          requestAnimationFrame(step);
+        });
+      }
+
+      window.addEventListener("load", autoScrollMoments, { once: true });
 
       // Mobile menu toggle
       function toggleMenu(btn) {

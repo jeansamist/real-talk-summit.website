@@ -438,18 +438,44 @@
       .speaker-card {
         position: relative;
         overflow: hidden;
-        border-radius: 6px;
-        background: var(--red); /* solid red base like the flyer */
+        border-radius: 10px;
+        background-color: var(--red); /* solid red base like the flyer */
         aspect-ratio: 1 / 1.08;
         cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        isolation: isolate;
         transition:
           transform 0.35s cubic-bezier(0.22, 0.68, 0, 1.2),
           box-shadow 0.35s ease;
-        box-shadow: 0 4px 24px rgba(200, 16, 46, 0.25);
+        box-shadow:
+          0 10px 28px rgba(200, 16, 46, 0.28),
+          0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+      }
+      .speaker-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            140deg,
+            rgba(255, 255, 255, 0.18) 0%,
+            rgba(255, 255, 255, 0) 36%
+          ),
+          radial-gradient(
+            circle at 15% 85%,
+            rgba(0, 0, 0, 0.35) 0%,
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(255, 255, 255, 0.12) 0%,
+            transparent 60%
+          );
+        z-index: 0;
       }
       .speaker-card:hover {
         transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 20px 50px rgba(200, 16, 46, 0.35);
+        box-shadow: 0 24px 60px rgba(200, 16, 46, 0.35);
       }
 
       /* ── Large white semi-circle top-right (matches flyer) ── */
@@ -460,7 +486,12 @@
         width: 72%;
         padding-bottom: 72%; /* keep it square → circle */
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.18);
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.25) 0%,
+          rgba(255, 255, 255, 0.08) 55%,
+          transparent 70%
+        );
         pointer-events: none;
         z-index: 1;
       }
@@ -482,7 +513,10 @@
         padding-bottom: 56%;
         border-radius: 50%;
         overflow: hidden;
-        border: 4px solid rgba(255, 255, 255, 0.9);
+        border: 3px solid rgba(255, 255, 255, 0.9);
+        box-shadow:
+          0 0 0 6px rgba(255, 255, 255, 0.12),
+          0 12px 26px rgba(0, 0, 0, 0.35);
         z-index: 2;
         background: var(--red-dark);
       }
@@ -529,7 +563,11 @@
         font-weight: 800;
         letter-spacing: 0.18em;
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.75);
+        color: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0.35rem 0.6rem;
+        border-radius: 999px;
       }
 
       /* ── White diagonal swoosh at bottom (key flyer element) ── */
@@ -551,7 +589,7 @@
         left: -10%;
         right: -10%;
         height: 100%;
-        background: var(--white);
+        background: linear-gradient(180deg, #ffffff 0%, #f7f4ef 70%);
         transform: skewY(-8deg);
         transform-origin: bottom left;
         border-radius: 2px 2px 0 0;
@@ -560,10 +598,10 @@
       .sc-swoosh::after {
         content: "";
         position: absolute;
-        bottom: 42%;
+        bottom: 43%;
         left: -10%;
         right: -10%;
-        height: 6px;
+        height: 5px;
         background: var(--red-dark);
         transform: skewY(-8deg);
         transform-origin: bottom left;
@@ -586,6 +624,7 @@
         color: var(--gray-900);
         letter-spacing: -0.01em;
         margin-bottom: 0.2rem;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
       }
       .sc-role {
         font-size: 0.72rem;
@@ -2359,11 +2398,16 @@
             <span class="tl-num">04</span>
           </div>
           <div class="tl-body">
-            <span class="tl-tag tag-red">Speaker</span>
-            <p class="tl-title">1st Speaker</p>
+            <span class="tl-tag tag-red"
+              >Pastor Greg Jennings &amp; Lady Gwendolyn Jennings</span
+            >
+            <p class="tl-title">
+              For Better or For Worse: Marriage, Faith &amp; Family
+            </p>
             <p class="tl-desc">
-              Real conversations begin. An anointed voice opens the dialogue
-              with biblical depth and lived experience.
+              With over 40 years of marriage, they share real insights on
+              navigating the highs and lows of marriage while keeping faith,
+              love, and family strong.
             </p>
           </div>
         </div>
@@ -2374,11 +2418,15 @@
             <span class="tl-num">05</span>
           </div>
           <div class="tl-body">
-            <span class="tl-tag tag-red">Speaker</span>
-            <p class="tl-title">2nd Speaker</p>
+            <span class="tl-tag tag-red">Dr. Ivy S. Butler</span>
+            <p class="tl-title">
+              Navigating Life After Loss: Redefining Life &amp; Family as a
+              Single
+            </p>
             <p class="tl-desc">
-              Building the momentum — the second voice deepens the conversation
-              with practical, spirit-led guidance.
+              Drawing from her journey as a widow, Dr. Butler encourages those
+              facing loss or broken relationships to rediscover purpose and
+              embrace life again through faith.
             </p>
           </div>
         </div>
@@ -2404,11 +2452,14 @@
             <span class="tl-num">07</span>
           </div>
           <div class="tl-body">
-            <span class="tl-tag tag-red">Speakers</span>
-            <p class="tl-title">3rd &amp; 4th Speakers</p>
+            <span class="tl-tag tag-red"
+              >Pastors Noah &amp; Mallory Nicholson</span
+            >
+            <p class="tl-title">The Blended Family &amp; Co-Parenting</p>
             <p class="tl-desc">
-              Back-to-back fire — two voices covering the terrain of family,
-              faith, and forward movement.
+              They share practical wisdom on building strong blended families
+              and navigating the challenges of co-parenting with faith,
+              communication, and grace.
             </p>
           </div>
         </div>
@@ -2417,6 +2468,25 @@
           <div class="tl-node">
             <div class="tl-dot"></div>
             <span class="tl-num">08</span>
+          </div>
+          <div class="tl-body">
+            <span class="tl-tag tag-red">Apostle Kendria Andrews</span>
+            <p class="tl-title">
+              Chemistry vs Trauma Bond: Overcoming Trauma, Toxicity, Triggers
+              &amp; Bondage
+            </p>
+            <p class="tl-desc">
+              Apostle Andrews reveals how trauma and toxic patterns affect
+              relationships and how healing and freedom are possible through
+              awareness and faith.
+            </p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-node">
+            <div class="tl-dot"></div>
+            <span class="tl-num">09</span>
           </div>
           <div class="tl-body">
             <span class="tl-tag tag-gold">Giveaway</span>
@@ -2431,14 +2501,17 @@
         <div class="tl-item">
           <div class="tl-node">
             <div class="tl-dot"></div>
-            <span class="tl-num">09</span>
+            <span class="tl-num">10</span>
           </div>
           <div class="tl-body">
             <span class="tl-tag tag-red">Keynote</span>
-            <p class="tl-title">5th Speaker — Keynote</p>
+            <p class="tl-title">
+              Struggles With Celibacy: It&#39;s Worth The Wait
+            </p>
             <p class="tl-desc">
-              The closing prophetic voice. A message designed to send you home
-              transformed, equipped, and encouraged.
+              Whitney shares a refreshing and honest perspective on singleness,
+              encouraging believers to trust God&#39;s timing and remain
+              faithful while waiting.
             </p>
           </div>
         </div>
@@ -2446,7 +2519,7 @@
         <div class="tl-item">
           <div class="tl-node">
             <div class="tl-dot red-fill"></div>
-            <span class="tl-num">10</span>
+            <span class="tl-num">11</span>
           </div>
           <div class="tl-body">
             <span class="tl-tag tag-navy">Closing</span>

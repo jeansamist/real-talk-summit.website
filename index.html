@@ -775,6 +775,132 @@
         color: var(--white);
       }
 
+      /* ─── MERCH CHECKOUT MODAL ─────────────────── */
+      #merch-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(7, 7, 12, 0.6);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 200;
+        padding: 1.5rem;
+      }
+      #merch-backdrop.open {
+        display: flex;
+      }
+      .merch-modal {
+        width: min(560px, 100%);
+        background: #fff7f8;
+        border-radius: 12px;
+        box-shadow: 0 24px 60px rgba(10, 10, 20, 0.25);
+        position: relative;
+        overflow: hidden;
+      }
+      .merch-modal-header {
+        padding: 1.75rem 2rem 1rem;
+        border-bottom: 1px solid rgba(200, 16, 46, 0.15);
+        background: linear-gradient(135deg, #fff0f2, #ffffff);
+      }
+      .merch-modal-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.6rem;
+        font-weight: 800;
+        margin-bottom: 0.25rem;
+        color: var(--red-dark);
+      }
+      .merch-modal-sub {
+        color: var(--gray-700);
+        font-size: 0.9rem;
+      }
+      .merch-modal-body {
+        padding: 1.5rem 2rem 2rem;
+      }
+      .merch-form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .merch-form-grid .full {
+        grid-column: 1 / -1;
+      }
+      .merch-form-label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--gray-700);
+        margin-bottom: 0.4rem;
+      }
+      .merch-input {
+        width: 100%;
+        padding: 0.7rem 0.85rem;
+        border: 1px solid var(--gray-300);
+        border-radius: 6px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.95rem;
+      }
+      .merch-textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+      .merch-form-actions {
+        margin-top: 1.5rem;
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+      }
+      .merch-submit {
+        flex: 1;
+        border: none;
+        background: var(--red);
+        color: var(--white);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.8rem;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .merch-submit[disabled] {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+      .merch-cancel {
+        border: 1px solid var(--gray-300);
+        background: #fff;
+        color: var(--gray-800);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.8rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .merch-error {
+        margin-top: 0.75rem;
+        color: #b4001b;
+        font-size: 0.85rem;
+        min-height: 1.2rem;
+      }
+      .merch-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+        border: none;
+        background: rgba(0, 0, 0, 0.06);
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
       /* ─── VENDOR VILLAGE ──────────────────────── */
       #vendor {
         position: relative;
@@ -2655,7 +2781,7 @@
           <div class="merch-body">
             <p class="merch-name">Real Talk Hoodie</p>
             <p class="merch-price">$30.00</p>
-            <button class="merch-btn">Order Now</button>
+            <button class="merch-btn" data-merch-id="hoodie">Order Now</button>
           </div>
         </div>
 
@@ -2674,7 +2800,7 @@
           <div class="merch-body">
             <p class="merch-name">Real Talk short sleeve T-shirt</p>
             <p class="merch-price">$25.00</p>
-            <button class="merch-btn">Order Now</button>
+            <button class="merch-btn" data-merch-id="short_tee">Order Now</button>
           </div>
         </div>
 
@@ -2693,7 +2819,7 @@
           <div class="merch-body">
             <p class="merch-name">Real Talk Long sleeve T-shirt</p>
             <p class="merch-price">$20.00</p>
-            <button class="merch-btn">Order Now</button>
+            <button class="merch-btn" data-merch-id="long_tee">Order Now</button>
           </div>
         </div>
       </div>
@@ -3393,6 +3519,193 @@
           window.scrollY > 50
             ? "rgba(255,255,255,0.95)"
             : "rgba(255,255,255,0.72)";
+      });
+    </script>
+
+    <!-- ═══════════════════════════════════════════════
+     MERCH CHECKOUT MODAL
+═══════════════════════════════════════════════ -->
+    <div
+      id="merch-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="merch-title"
+      aria-describedby="merch-subtitle"
+    >
+      <div class="merch-modal">
+        <button class="merch-close" id="merch-close" aria-label="Close merch">
+          ✕
+        </button>
+        <div class="merch-modal-header">
+          <h2 class="merch-modal-title" id="merch-title">
+            Complete Your Order
+          </h2>
+          <p class="merch-modal-sub" id="merch-subtitle">
+            You are purchasing official Real Talk Summit merch.
+          </p>
+        </div>
+        <div class="merch-modal-body">
+          <form id="merch-form">
+            <div class="merch-form-grid">
+              <div class="full">
+                <label class="merch-form-label" for="merch-email">Email</label>
+                <input
+                  class="merch-input"
+                  id="merch-email"
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
+              <div class="full">
+                <label class="merch-form-label" for="merch-name"
+                  >Full Name</label
+                >
+                <input
+                  class="merch-input"
+                  id="merch-name"
+                  name="name"
+                  type="text"
+                  placeholder="Your name"
+                />
+              </div>
+              <div class="full">
+                <label class="merch-form-label" for="merch-address"
+                  >Delivery Address</label
+                >
+                <textarea
+                  class="merch-input merch-textarea"
+                  id="merch-address"
+                  name="address"
+                  placeholder="Street, city, state, postal code, country"
+                  required
+                ></textarea>
+              </div>
+            </div>
+            <div class="merch-form-actions">
+              <button class="merch-submit" id="merch-submit" type="submit">
+                Continue to Stripe
+              </button>
+              <button class="merch-cancel" id="merch-cancel" type="button">
+                Cancel
+              </button>
+            </div>
+            <div class="merch-error" id="merch-error"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- /merch-backdrop -->
+
+    <script>
+      const merchCatalog = {
+        hoodie: { name: "Real Talk Hoodie", price: "$30.00" },
+        short_tee: { name: "Real Talk Short Sleeve T-shirt", price: "$25.00" },
+        long_tee: { name: "Real Talk Long Sleeve T-shirt", price: "$20.00" },
+      };
+
+      const merchApiBase = "https://real-talk-summit-backend.vercel.app";
+
+      let merchSelectedId = null;
+      let merchProcessing = false;
+
+      const merchBackdrop = document.getElementById("merch-backdrop");
+      const merchForm = document.getElementById("merch-form");
+      const merchSubtitle = document.getElementById("merch-subtitle");
+      const merchError = document.getElementById("merch-error");
+      const merchSubmit = document.getElementById("merch-submit");
+
+      function openMerchModal(itemId) {
+        const item = merchCatalog[itemId];
+        if (!item) return;
+        merchSelectedId = itemId;
+        merchSubtitle.textContent = `You're purchasing: ${item.name} (${item.price}).`;
+        merchError.textContent = "";
+        merchProcessing = false;
+        merchSubmit.disabled = false;
+        merchForm.reset();
+        merchBackdrop.classList.add("open");
+        document.body.style.overflow = "hidden";
+        setTimeout(() => document.getElementById("merch-email").focus(), 60);
+      }
+
+      function closeMerchModal() {
+        merchBackdrop.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      document
+        .querySelectorAll(".merch-btn[data-merch-id]")
+        .forEach((btn) => {
+          btn.addEventListener("click", () => {
+            openMerchModal(btn.dataset.merchId);
+          });
+        });
+
+      document.getElementById("merch-close").addEventListener("click", () => {
+        closeMerchModal();
+      });
+      document.getElementById("merch-cancel").addEventListener("click", () => {
+        closeMerchModal();
+      });
+      merchBackdrop.addEventListener("click", (e) => {
+        if (e.target === merchBackdrop) closeMerchModal();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && merchBackdrop.classList.contains("open")) {
+          closeMerchModal();
+        }
+      });
+
+      merchForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (merchProcessing || !merchSelectedId) return;
+        if (!merchForm.reportValidity()) return;
+
+        merchProcessing = true;
+        merchSubmit.disabled = true;
+        merchError.textContent = "";
+
+        const payload = {
+          itemId: merchSelectedId,
+          customer: {
+            email: document.getElementById("merch-email").value.trim(),
+            name: document.getElementById("merch-name").value.trim(),
+          },
+          deliveryAddressText: document
+            .getElementById("merch-address")
+            .value.trim(),
+        };
+
+        try {
+          const response = await fetch(
+            `${merchApiBase}/api/checkout/create-session`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(payload),
+            },
+          );
+
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok || !data.url) {
+            merchError.textContent =
+              data.error || "Unable to start checkout. Please try again.";
+            merchProcessing = false;
+            merchSubmit.disabled = false;
+            return;
+          }
+
+          window.location.href = data.url;
+        } catch (error) {
+          merchError.textContent =
+            "Unable to start checkout. Please check your connection.";
+          merchProcessing = false;
+          merchSubmit.disabled = false;
+        }
       });
     </script>
 

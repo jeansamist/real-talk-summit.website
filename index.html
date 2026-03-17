@@ -2260,7 +2260,7 @@
       </ul>
       <div class="nav-actions">
         <a class="btn-outline" href="#footer">Donate</a>
-        <a class="btn-solid" href="#hero">Register</a>
+        <a class="btn-solid" data-merch-id="ticket" href="#hero">Register</a>
       </div>
       <div class="nav-hamburger" onclick="toggleMenu(this)">
         <span></span><span></span><span></span>
@@ -3189,6 +3189,7 @@
               text-decoration: none;
               font-size: 0.9rem;
             "
+            data-merch-id="ticket"
           >
             <svg
               width="16"
@@ -3246,6 +3247,7 @@
         <a
           href="#hero"
           class="btn-solid"
+          data-merch-id="ticket"
           style="
             padding: 0.9rem 2.5rem;
             font-size: 0.9rem;
@@ -3603,6 +3605,7 @@
         hoodie: { name: "Real Talk Hoodie", price: "$30.00" },
         short_tee: { name: "Real Talk Short Sleeve T-shirt", price: "$25.00" },
         long_tee: { name: "Real Talk Long Sleeve T-shirt", price: "$20.00" },
+        ticket: { name: "Real Talk Summit Ticket", price: "$25.00" },
       };
 
       const merchApiBase = "https://real-talk-summit-backend.vercel.app";
@@ -3635,13 +3638,14 @@
         document.body.style.overflow = "";
       }
 
-      document
-        .querySelectorAll(".merch-btn[data-merch-id]")
-        .forEach((btn) => {
-          btn.addEventListener("click", () => {
-            openMerchModal(btn.dataset.merchId);
-          });
+      document.querySelectorAll("[data-merch-id]").forEach((btn) => {
+        btn.addEventListener("click", (event) => {
+          if (btn.tagName === "A") {
+            event.preventDefault();
+          }
+          openMerchModal(btn.dataset.merchId);
         });
+      });
 
       document.getElementById("merch-close").addEventListener("click", () => {
         closeMerchModal();

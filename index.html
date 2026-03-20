@@ -776,7 +776,8 @@
       }
 
       /* ─── MERCH CHECKOUT MODAL ─────────────────── */
-      #merch-backdrop {
+      #merch-backdrop,
+      #ticket-backdrop {
         position: fixed;
         inset: 0;
         background: rgba(7, 7, 12, 0.6);
@@ -786,7 +787,8 @@
         z-index: 200;
         padding: 1.5rem;
       }
-      #merch-backdrop.open {
+      #merch-backdrop.open,
+      #ticket-backdrop.open {
         display: flex;
       }
       .merch-modal {
@@ -3600,6 +3602,70 @@
     </div>
     <!-- /merch-backdrop -->
 
+    <!-- ═══════════════════════════════════════════════
+     TICKET CHECKOUT MODAL
+═══════════════════════════════════════════════ -->
+    <div
+      id="ticket-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="ticket-title"
+      aria-describedby="ticket-subtitle"
+    >
+      <div class="merch-modal">
+        <button class="merch-close" id="ticket-close" aria-label="Close ticket">
+          ✕
+        </button>
+        <div class="merch-modal-header">
+          <h2 class="merch-modal-title" id="ticket-title">
+            Reserve Your Spot
+          </h2>
+          <p class="merch-modal-sub" id="ticket-subtitle">
+            You are purchasing a ticket for the Real Talk Summit.
+          </p>
+        </div>
+        <div class="merch-modal-body">
+          <form id="ticket-form">
+            <div class="merch-form-grid">
+              <div class="full">
+                <label class="merch-form-label" for="ticket-name"
+                  >Full Name</label
+                >
+                <input
+                  class="merch-input"
+                  id="ticket-name"
+                  name="name"
+                  type="text"
+                  placeholder="Your full name"
+                  required
+                />
+              </div>
+              <div class="full">
+                <label class="merch-form-label" for="ticket-email">Email</label>
+                <input
+                  class="merch-input"
+                  id="ticket-email"
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
+            </div>
+            <div class="merch-form-actions">
+              <button class="merch-submit" id="ticket-submit" type="submit">
+                Continue to Stripe
+              </button>
+              <button class="merch-cancel" id="ticket-cancel" type="button">
+                Cancel
+              </button>
+            </div>
+            <div class="merch-error" id="ticket-error"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <script>
       const merchCatalog = {
         hoodie: { name: "Real Talk Hoodie", price: "$30.00" },
@@ -3618,6 +3684,11 @@
       const merchSubtitle = document.getElementById("merch-subtitle");
       const merchError = document.getElementById("merch-error");
       const merchSubmit = document.getElementById("merch-submit");
+
+      const ticketBackdrop = document.getElementById("ticket-backdrop");
+      const ticketForm = document.getElementById("ticket-form");
+      const ticketError = document.getElementById("ticket-error");
+      const ticketSubmit = document.getElementById("ticket-submit");
 
       function openMerchModal(itemId) {
         const item = merchCatalog[itemId];
@@ -3638,12 +3709,32 @@
         document.body.style.overflow = "";
       }
 
+      function openTicketModal() {
+        merchSelectedId = "ticket";
+        ticketError.textContent = "";
+        merchProcessing = false;
+        ticketSubmit.disabled = false;
+        ticketForm.reset();
+        ticketBackdrop.classList.add("open");
+        document.body.style.overflow = "hidden";
+        setTimeout(() => document.getElementById("ticket-name").focus(), 60);
+      }
+
+      function closeTicketModal() {
+        ticketBackdrop.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
       document.querySelectorAll("[data-merch-id]").forEach((btn) => {
         btn.addEventListener("click", (event) => {
           if (btn.tagName === "A") {
             event.preventDefault();
           }
-          openMerchModal(btn.dataset.merchId);
+          if (btn.dataset.merchId === "ticket") {
+            openTicketModal();
+          } else {
+            openMerchModal(btn.dataset.merchId);
+          }
         });
       });
 
@@ -3656,11 +3747,54 @@
       merchBackdrop.addEventListener("click", (e) => {
         if (e.target === merchBackdrop) closeMerchModal();
       });
+
+      document.getElementById("ticket-close").addEventListener("click", () => {
+        closeTicketModal();
+      });
+      document.getElementById("ticket-cancel").addEventListener("click", () => {
+        closeTicketModal();
+      });
+      ticketBackdrop.addEventListener("click", (e) => {
+        if (e.target === ticketBackdrop) closeTicketModal();
+      });
+
       document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && merchBackdrop.classList.contains("open")) {
-          closeMerchModal();
+        if (e.key === "Escape") {
+          if (merchBackdrop.classList.contains("open")) closeMerchModal();
+          if (ticketBackdrop.classList.contains("open")) closeTicketModal();
         }
       });
+
+      async function handleCheckout(payload, errorEl, submitEl) {
+        try {
+          const response = await fetch(
+            `${merchApiBase}/api/checkout/create-session`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(payload),
+            },
+          );
+
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok || !data.url) {
+            errorEl.textContent =
+              data.error || "Unable to start checkout. Please try again.";
+            merchProcessing = false;
+            submitEl.disabled = false;
+            return;
+          }
+
+          window.location.href = data.url;
+        } catch (error) {
+          errorEl.textContent =
+            "Unable to start checkout. Please check your connection.";
+          merchProcessing = false;
+          submitEl.disabled = false;
+        }
+      }
 
       merchForm.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -3682,34 +3816,27 @@
             .value.trim(),
         };
 
-        try {
-          const response = await fetch(
-            `${merchApiBase}/api/checkout/create-session`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(payload),
-            },
-          );
+        await handleCheckout(payload, merchError, merchSubmit);
+      });
 
-          const data = await response.json().catch(() => ({}));
-          if (!response.ok || !data.url) {
-            merchError.textContent =
-              data.error || "Unable to start checkout. Please try again.";
-            merchProcessing = false;
-            merchSubmit.disabled = false;
-            return;
-          }
+      ticketForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (merchProcessing) return;
+        if (!ticketForm.reportValidity()) return;
 
-          window.location.href = data.url;
-        } catch (error) {
-          merchError.textContent =
-            "Unable to start checkout. Please check your connection.";
-          merchProcessing = false;
-          merchSubmit.disabled = false;
-        }
+        merchProcessing = true;
+        ticketSubmit.disabled = true;
+        ticketError.textContent = "";
+
+        const payload = {
+          itemId: "ticket",
+          customer: {
+            name: document.getElementById("ticket-name").value.trim(),
+            email: document.getElementById("ticket-email").value.trim(),
+          },
+        };
+
+        await handleCheckout(payload, ticketError, ticketSubmit);
       });
     </script>
 

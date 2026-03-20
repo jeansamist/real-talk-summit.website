@@ -3586,6 +3586,18 @@
                   required
                 ></textarea>
               </div>
+              <div class="full">
+                <label class="merch-form-label" for="merch-size">Size</label>
+                <select class="merch-input" id="merch-size" name="size" required>
+                  <option value="XS">XS</option>
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                  <option value="2XL">2XL (+$3.00)</option>
+                  <option value="3XL">3XL (+$3.00)</option>
+                </select>
+              </div>
             </div>
             <div class="merch-form-actions">
               <button class="merch-submit" id="merch-submit" type="submit">
@@ -3684,21 +3696,41 @@
       const merchSubtitle = document.getElementById("merch-subtitle");
       const merchError = document.getElementById("merch-error");
       const merchSubmit = document.getElementById("merch-submit");
+      const merchSizeSelect = document.getElementById("merch-size");
 
       const ticketBackdrop = document.getElementById("ticket-backdrop");
       const ticketForm = document.getElementById("ticket-form");
       const ticketError = document.getElementById("ticket-error");
       const ticketSubmit = document.getElementById("ticket-submit");
 
+      function updateMerchPriceDisplay() {
+        const item = merchCatalog[merchSelectedId];
+        if (!item) return;
+
+        let basePrice = parseFloat(item.price.replace("$", ""));
+        const size = merchSizeSelect.value;
+        if (size === "2XL" || size === "3XL") {
+          basePrice += 3.0;
+        }
+
+        merchSubtitle.textContent = `You're purchasing: ${
+          item.name
+        } ($${basePrice.toFixed(2)}).`;
+      }
+
+      merchSizeSelect.addEventListener("change", updateMerchPriceDisplay);
+
       function openMerchModal(itemId) {
         const item = merchCatalog[itemId];
         if (!item) return;
         merchSelectedId = itemId;
-        merchSubtitle.textContent = `You're purchasing: ${item.name} (${item.price}).`;
+        merchSizeSelect.value = "M";
+        updateMerchPriceDisplay();
         merchError.textContent = "";
         merchProcessing = false;
         merchSubmit.disabled = false;
         merchForm.reset();
+        merchSizeSelect.value = "M"; // Set again after reset
         merchBackdrop.classList.add("open");
         document.body.style.overflow = "hidden";
         setTimeout(() => document.getElementById("merch-email").focus(), 60);
@@ -3807,6 +3839,7 @@
 
         const payload = {
           itemId: merchSelectedId,
+          size: merchSizeSelect.value,
           customer: {
             email: document.getElementById("merch-email").value.trim(),
             name: document.getElementById("merch-name").value.trim(),
